@@ -1,0 +1,343 @@
+[
+	[
+        {
+            "string": "EngineShaders_DX12"
+        },
+        {
+            "path": "Resources/Shaders/DX12/EngineShaders.bin",
+            "resource_type": "BinaryBlob"
+        }
+    ],
+    [
+        {
+            "string": "ScreenGrayscaleShader"
+        },
+        {
+            "path1": "Resources/Shaders/OpenGL/screenVert.glsl",
+            "path2": "Resources/Shaders/OpenGL/screenGrayscaleFrag.glsl",
+            "resource_type": "GL_Shader"
+        }
+    ],
+    [
+        {
+            "string": "CubeModel"
+        },
+        {
+            "path": "Resources/cube.obj",
+            "resource_type": "Mesh"
+        }
+    ],
+	[
+        {
+            "string": "ArwingModel"
+        },
+        {
+            "path": "Resources/Arwing/Arwing.obj",
+            "resource_type": "Mesh"
+        }
+    ],
+    [
+        {
+            "string": "SkyboxBackTexture"
+        },
+        {
+            "path": "Resources/skybox/back.png",
+            "resource_type": "Texture"
+        }
+    ],
+    [
+        {
+            "string": "SkyboxRightTexture"
+        },
+        {
+            "path": "Resources/skybox/right.png",
+            "resource_type": "Texture"
+        }
+    ],
+    [
+        {
+            "string": "DefaultShader"
+        },
+        {
+            "path1": "Resources/Shaders/OpenGL/defaultVert.glsl",
+            "path2": "Resources/Shaders/OpenGL/defaultFrag.glsl",
+            "resource_type": "GL_Shader"
+        }
+    ],
+    [
+        {
+            "string": "UnlitShader"
+        },
+        {
+            "path1": "Resources/Shaders/OpenGL/defaultVert.glsl",
+            "path2": "Resources/Shaders/OpenGL/unlitTextureFrag.glsl",
+            "resource_type": "GL_Shader"
+        }
+    ],
+    [
+        {
+            "string": "Text2DShader"
+        },
+        {
+            "path1": "Resources/Shaders/OpenGL/text2DVert.glsl",
+            "path2": "Resources/Shaders/OpenGL/text2DFrag.glsl",
+            "resource_type": "GL_Shader"
+        }
+    ],
+    [
+        {
+            "string": "ColorShader"
+        },
+        {
+            "path1": "Resources/Shaders/OpenGL/defaultVert.glsl",
+            "path2": "Resources/Shaders/OpenGL/colorFrag.glsl",
+            "resource_type": "GL_Shader"
+        }
+    ],
+    [
+        {
+            "string": "SkyboxShader"
+        },
+        {
+            "path1": "Resources/Shaders/OpenGL/skyboxVert.glsl",
+            "path2": "Resources/Shaders/OpenGL/skyboxFrag.glsl",
+            "resource_type": "GL_Shader"
+        }
+    ],
+    [
+        {
+            "string": "SkyboxTopTexture"
+        },
+        {
+            "path": "Resources/skybox/top.png",
+            "resource_type": "Texture"
+        }
+    ],
+    [
+        {
+            "string": "ArialFont"
+        },
+        {
+            "path": "Resources/arial.ttf",
+            "resource_type": "FreetypeFont"
+        }
+    ],
+    [
+        {
+            "string": "CubeTexture"
+        },
+        {
+            "path": "Resources/wall.png",
+            "resource_type": "Texture"
+        }
+    ],
+	[
+        {
+            "string": "ButtonTexture"
+        },
+        {
+            "path": "Resources/button.bmp",
+            "resource_type": "Texture"
+        }
+    ],
+    [
+        {
+            "string": "SkyboxLeftTexture"
+        },
+        {
+            "path": "Resources/skybox/left.png",
+            "resource_type": "Texture"
+        }
+    ],
+    [
+        {
+            "string": "ScreenInvertShader"
+        },
+        {
+            "path1": "Resources/Shaders/OpenGL/screenVert.glsl",
+            "path2": "Resources/Shaders/OpenGL/screenInversionEffectFrag.glsl",
+            "resource_type": "GL_Shader"
+        }
+    ],
+    [
+        {
+            "string": "ScreenShader"
+        },
+        {
+            "path1": "Resources/Shaders/OpenGL/screenVert.glsl",
+            "path2": "Resources/Shaders/OpenGL/screenFrag.glsl",
+            "resource_type": "GL_Shader"
+        }
+    ],
+    [
+        {
+            "string": "SkyboxBottomTexture"
+        },
+        {
+            "path": "Resources/skybox/bottom.png",
+            "resource_type": "Texture"
+        }
+    ],
+    [
+        {
+            "string": "SkyboxFrontTexture"
+        },
+        {
+            "path": "Resources/skybox/front.png",
+            "resource_type": "Texture"
+        }
+    ],
+	[
+		{
+			"string": "ArwingTexture1"
+		},
+		{
+			"path": "Resources/Arwing/Arwing/Material1.png",
+			"resource_type": "Texture"
+		}
+	],
+	[
+		{
+			"string": "ArwingTexture2"
+		},
+		{
+			"path": "Resources/Arwing/Arwing/Material2.png",
+			"resource_type": "Texture"
+		}
+	],
+	[
+		{
+			"string": "ArwingTexture3"
+		},
+		{
+			"path": "Resources/Arwing/Arwing/Material3.png",
+			"resource_type": "Texture"
+		}
+	],
+	[
+		{
+			"string": "ArwingTexture4"
+		},
+		{
+			"path": "Resources/Arwing/Arwing/Material4.png",
+			"resource_type": "Texture"
+		}
+	],
+	[
+		{
+			"string": "ArwingTexture5"
+		},
+		{
+			"path": "Resources/Arwing/Arwing/Material5.png",
+			"resource_type": "Texture"
+		}
+	],
+	[
+		{
+			"string": "ArwingTexture6"
+		},
+		{
+			"path": "Resources/Arwing/Arwing/Material6.png",
+			"resource_type": "Texture"
+		}
+	],
+	[
+		{
+			"string": "ArwingTexture7"
+		},
+		{
+			"path": "Resources/Arwing/Arwing/Material7.png",
+			"resource_type": "Texture"
+		}
+	],
+	[
+		{
+			"string": "ArwingTexture8"
+		},
+		{
+			"path": "Resources/Arwing/Arwing/Material8.png",
+			"resource_type": "Texture"
+		}
+	],
+	[
+		{
+			"string": "ArwingTexture9"
+		},
+		{
+			"path": "Resources/Arwing/Arwing/Material9.png",
+			"resource_type": "Texture"
+		}
+	],
+	[
+		{
+			"string": "ArwingTexture10"
+		},
+		{
+			"path": "Resources/Arwing/Arwing/Material10.png",
+			"resource_type": "Texture"
+		}
+	],
+	[
+		{
+			"string": "ArwingTexture11"
+		},
+		{
+			"path": "Resources/Arwing/Arwing/Material11.png",
+			"resource_type": "Texture"
+		}
+	],
+	[
+		{
+			"string": "ArwingTexture12"
+		},
+		{
+			"path": "Resources/Arwing/Arwing/Material12.png",
+			"resource_type": "Texture"
+		}
+	],
+	[
+		{
+			"string": "ArwingTexture13"
+		},
+		{
+			"path": "Resources/Arwing/Arwing/M_7CF8406C_c.png",
+			"resource_type": "Texture"
+		}
+	],
+	[
+		{
+			"string": "ArwingTexture14"
+		},
+		{
+			"path": "Resources/Arwing/Arwing/Material14.png",
+			"resource_type": "Texture"
+		}
+	],
+	[
+		{
+			"string": "ArwingTexture15"
+		},
+		{
+			"path": "Resources/Arwing/Arwing/Material15.png",
+			"resource_type": "Texture"
+		}
+	],
+	[
+		{
+			"string": "CorneriaMusic"
+		},
+		{
+			"path": "Resources/Music/Corneria.mp3",
+			"resource_type": "AudioClip"
+		}
+	],
+	[
+		{
+			"string": "LazerSFX"
+		},
+		{
+			"path": "Resources/SFX/Lazer1.wav",
+			"resource_type": "AudioClip"
+		}
+	]
+]
