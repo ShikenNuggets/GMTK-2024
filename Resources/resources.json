@@ -1,13 +1,4 @@
 [
-	[
-        {
-            "string": "EngineShaders_DX12"
-        },
-        {
-            "path": "Resources/Shaders/DX12/EngineShaders.bin",
-            "resource_type": "BinaryBlob"
-        }
-    ],
     [
         {
             "string": "ScreenGrayscaleShader"
