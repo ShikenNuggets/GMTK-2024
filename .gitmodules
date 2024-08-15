@@ -1,0 +1,3 @@
+[submodule "GadgetEngine"]
+	path = GadgetEngine
+	url = https://github.com/ShikenNuggets/GadgetEngine.git
