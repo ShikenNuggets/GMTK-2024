@@ -2,6 +2,8 @@
 
 #include <Gadget.h>
 
+#include "GrowState.h"
+
 using namespace Gadget;
 
 class BallController : public GameLogicComponent{
@@ -60,12 +62,14 @@ public:
 			currentState = (GrowState)((int)currentState + 1);
 			targetScale = sizes[currentState];
 			scaleTimer = 0.0f;
+			OnGrowStateChangeBegins(currentState);
 		}else if(App::GetInput().GetButtonDown(SID("Shrink")) && currentState > GrowState::Small && canChangeState){
 			canChangeState = false;
 			oldScale = sizes[currentState];
 			currentState = (GrowState)((int)currentState - 1);
 			targetScale = sizes[currentState];
 			scaleTimer = 0.0f;
+			OnGrowStateChangeBegins(currentState);
 		}
 
 		if(!canChangeState){
@@ -85,12 +89,6 @@ private:
 	static constexpr float jumpCooldownTime = 1.5f;
 	static constexpr float scaleTime = 1.0f;
 
-	enum GrowState : int{ //I normally would only use `enum class` but implicit casting is useful here
-		Small = 0,
-		Normal = 1,
-		Big = 2
-	};
-
 	//TODO - constexpr Gadget::StaticArray
 	//TODO - Brace initializer for Gadget::StaticArray
 	static constexpr std::array<float, 3> sizes{
@@ -108,4 +106,6 @@ private:
 	float oldScale;
 	float targetScale;
 	float scaleTimer;
+
+	void OnGrowStateChangeBegins(GrowState state) const;
 };

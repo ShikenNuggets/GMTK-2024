@@ -15,10 +15,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BallController.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BallController.h" />
+    <ClInclude Include="GrowState.h" />
     <ClInclude Include="HamsterController.h" />
     <ClInclude Include="HamsterGame.h" />
     <ClInclude Include="TestScene.h" />
