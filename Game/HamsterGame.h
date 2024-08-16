@@ -27,9 +27,10 @@ public:
 		App::GetInput().DefineAxis(horizontal);
 
 		Axis vertical = Axis(SID("Vertical"));
-		vertical.AddButtonAxis(ButtonAxis(ButtonID::Keyboard_W, ButtonID::Keyboard_S));
-		vertical.AddButtonAxis(ButtonAxis(ButtonID::Keyboard_Arrow_Up, ButtonID::Keyboard_Arrow_Down));
+		vertical.AddButtonAxis(ButtonAxis(ButtonID::Keyboard_S, ButtonID::Keyboard_W));
+		vertical.AddButtonAxis(ButtonAxis(ButtonID::Keyboard_Arrow_Down, ButtonID::Keyboard_Arrow_Up));
 		vertical.AddAxisID(AxisID::Gamepad_LeftStick_Vertical);
+		vertical.Invert(true);
 		App::GetInput().DefineAxis(vertical);
 
 		Button jump = Button(SID("Jump"));
