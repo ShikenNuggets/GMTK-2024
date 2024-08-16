@@ -36,6 +36,16 @@ public:
 		jump.AddButtonID(ButtonID::Keyboard_Space);
 		jump.AddButtonID(ButtonID::Gamepad_Face_Down);
 		App::GetInput().DefineButton(jump);
+
+		Button grow = Button(SID("Grow"));
+		grow.AddButtonID(ButtonID::Keyboard_E);
+		grow.AddButtonID(ButtonID::Gamepad_Shoulder_Right1);
+		App::GetInput().DefineButton(grow);
+
+		Button shrink = Button(SID("Shrink"));
+		shrink.AddButtonID(ButtonID::Keyboard_Q);
+		shrink.AddButtonID(ButtonID::Gamepad_Shoulder_Left1);
+		App::GetInput().DefineButton(shrink);
 	}
 
 	void DefineMaterials(){

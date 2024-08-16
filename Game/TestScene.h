@@ -31,7 +31,6 @@ protected:
 				floor->AddComponent(new CubeCollider(floor));
 				CreateObject(floor);
 			}
-			
 		}
 
 		GameObject* hamster = new GameObject(SID("Hamster"));

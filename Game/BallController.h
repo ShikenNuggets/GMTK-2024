@@ -6,7 +6,7 @@ using namespace Gadget;
 
 class BallController : public GameLogicComponent{
 public:
-	BallController(GameObject* parent_) : GameLogicComponent(SID("BallController"), parent_), rb(nullptr){}
+	BallController(GameObject* parent_) : GameLogicComponent(SID("BallController"), parent_), rb(nullptr), jumpCooldownTimer(0.0f), currentState(GrowState::Normal){}
 
 	virtual void OnStart(){
 		GADGET_BASIC_ASSERT(parent != nullptr);
@@ -52,6 +52,32 @@ public:
 			rb->AddForce(Vector3::Up() * jumpForce);
 			jumpCooldownTimer = jumpCooldownTime;
 		}
+
+		if(App::GetInput().GetButtonDown(SID("Grow"))){
+			switch(currentState){
+				case GrowState::Small:
+					currentState = GrowState::Normal;
+					break;
+				case GrowState::Normal:
+					currentState = GrowState::Big;
+					break;
+				default:
+					break;
+			}
+		}else if(App::GetInput().GetButtonDown(SID("Shrink"))){
+			switch(currentState){
+				case BallController::GrowState::Normal:
+					currentState = GrowState::Small;
+					break;
+				case BallController::GrowState::Big:
+					currentState = GrowState::Normal;
+					break;
+				default:
+					break;
+			}
+		}
+
+		OnChangeGrowState(currentState);
 	}
 
 private:
@@ -59,7 +85,37 @@ private:
 	static constexpr float jumpForce = 12'500.0f;
 	static constexpr float jumpCooldownTime = 1.5f;
 
+	static constexpr float defaultSize = 1.0f;
+	static constexpr float shrinkSize = 0.1f;
+	static constexpr float growSize = 10.0f;
+
+	enum class GrowState{
+		Small = 0,
+		Normal = 1,
+		Big = 2
+	};
+
+	void OnChangeGrowState(GrowState state){
+		switch(state){
+			case GrowState::Small:
+				parent->SetScale(shrinkSize);
+				break;
+			case GrowState::Normal:
+				parent->SetScale(defaultSize);
+				break;
+			case GrowState::Big:
+				parent->SetScale(growSize);
+				break;
+			default:
+				GADGET_ASSERT_NOT_IMPLEMENTED;
+				break;
+		}
+
+		currentState = state;
+	}
+
 	GameObject* cameraObj;
 	Rigidbody* rb;
 	float jumpCooldownTimer;
+	GrowState currentState;
 };
