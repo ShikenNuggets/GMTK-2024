@@ -14,7 +14,9 @@ public:
 		DefineInputs();
 		DefineMaterials();
 
-		App::GetInstance().GetSceneManager().AddScene(new TestScene());
+		App::GetSceneManager().AddScene(new TestScene());
+
+		App::GetPhysics().SetWorldGravity(-20.0f);
 	}
 
 	void DefineInputs(){

@@ -56,7 +56,7 @@ public:
 
 private:
 	static constexpr float moveSpeed = 15.0f;
-	static constexpr float jumpForce = 7'500.0f;
+	static constexpr float jumpForce = 12'500.0f;
 	static constexpr float jumpCooldownTime = 1.5f;
 
 	GameObject* cameraObj;
