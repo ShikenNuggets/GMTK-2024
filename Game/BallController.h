@@ -6,7 +6,7 @@ using namespace Gadget;
 
 class BallController : public GameLogicComponent{
 public:
-	BallController(GameObject* parent_) : GameLogicComponent(SID("BallController"), parent_), rb(nullptr), jumpCooldownTimer(0.0f), currentState(GrowState::Normal){}
+	BallController(GameObject* parent_) : GameLogicComponent(SID("BallController"), parent_), cameraObj(nullptr), rb(nullptr), jumpCooldownTimer(0.0f), currentState(GrowState::Normal), canChangeState(true), oldScale(sizes[GrowState::Normal]), targetScale(sizes[GrowState::Normal]), scaleTimer(0.0f){}
 
 	virtual void OnStart(){
 		GADGET_BASIC_ASSERT(parent != nullptr);
@@ -53,69 +53,59 @@ public:
 			jumpCooldownTimer = jumpCooldownTime;
 		}
 
-		if(App::GetInput().GetButtonDown(SID("Grow"))){
-			switch(currentState){
-				case GrowState::Small:
-					currentState = GrowState::Normal;
-					break;
-				case GrowState::Normal:
-					currentState = GrowState::Big;
-					break;
-				default:
-					break;
-			}
-		}else if(App::GetInput().GetButtonDown(SID("Shrink"))){
-			switch(currentState){
-				case BallController::GrowState::Normal:
-					currentState = GrowState::Small;
-					break;
-				case BallController::GrowState::Big:
-					currentState = GrowState::Normal;
-					break;
-				default:
-					break;
-			}
+		//Growing and Shrinking
+		if(App::GetInput().GetButtonDown(SID("Grow")) && currentState < GrowState::Big && canChangeState){
+			canChangeState = false;
+			oldScale = sizes[currentState];
+			currentState = (GrowState)((int)currentState + 1);
+			targetScale = sizes[currentState];
+			scaleTimer = 0.0f;
+		}else if(App::GetInput().GetButtonDown(SID("Shrink")) && currentState > GrowState::Small && canChangeState){
+			canChangeState = false;
+			oldScale = sizes[currentState];
+			currentState = (GrowState)((int)currentState - 1);
+			targetScale = sizes[currentState];
+			scaleTimer = 0.0f;
 		}
 
-		OnChangeGrowState(currentState);
+		if(!canChangeState){
+			scaleTimer += deltaTime_;
+			if(scaleTimer >= scaleTime){
+				parent->SetScale(targetScale);
+				canChangeState = true;
+			}else{
+				parent->SetScale(Math::Lerp(oldScale, targetScale, scaleTimer / scaleTime));
+			}
+		}
 	}
 
 private:
 	static constexpr float moveSpeed = 15.0f;
 	static constexpr float jumpForce = 12'500.0f;
 	static constexpr float jumpCooldownTime = 1.5f;
+	static constexpr float scaleTime = 1.0f;
 
-	static constexpr float defaultSize = 1.0f;
-	static constexpr float shrinkSize = 0.1f;
-	static constexpr float growSize = 10.0f;
-
-	enum class GrowState{
+	enum GrowState : int{ //I normally would only use `enum class` but implicit casting is useful here
 		Small = 0,
 		Normal = 1,
 		Big = 2
 	};
 
-	void OnChangeGrowState(GrowState state){
-		switch(state){
-			case GrowState::Small:
-				parent->SetScale(shrinkSize);
-				break;
-			case GrowState::Normal:
-				parent->SetScale(defaultSize);
-				break;
-			case GrowState::Big:
-				parent->SetScale(growSize);
-				break;
-			default:
-				GADGET_ASSERT_NOT_IMPLEMENTED;
-				break;
-		}
-
-		currentState = state;
-	}
+	//TODO - constexpr Gadget::StaticArray
+	//TODO - Brace initializer for Gadget::StaticArray
+	static constexpr std::array<float, 3> sizes{
+		0.1f, //Shrink
+		1.0f, //Normal
+		10.0f, //Grow
+	};
 
 	GameObject* cameraObj;
 	Rigidbody* rb;
 	float jumpCooldownTimer;
 	GrowState currentState;
+	bool canChangeState;
+
+	float oldScale;
+	float targetScale;
+	float scaleTimer;
 };
