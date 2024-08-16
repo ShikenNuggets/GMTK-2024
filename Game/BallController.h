@@ -13,7 +13,7 @@ public:
 
 		rb = parent->GetComponent<Rigidbody>();
 		GADGET_BASIC_ASSERT(rb != nullptr);
-		rb->SetMaxVelocity(Vector3::Fill(50.0f));
+		rb->SetMaxVelocity(Vector3(10.0f, Math::Infinity, 10.0f));
 		rb->SetBrakingSpeed(5.0f);
 
 		cameraObj = App::GetSceneManager().CurrentScene()->FindWithTag(SID("Camera"));
@@ -40,7 +40,7 @@ public:
 			direction.Normalize();
 		}
 
-		rb->AddVelocity(direction * magnitude * 25.0f * deltaTime_);
+		rb->AddVelocity(direction * magnitude * 15.0f * deltaTime_);
 	}
 
 private:
