@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BallController.h" />
+    <ClInclude Include="CameraController.h" />
     <ClInclude Include="GrowState.h" />
     <ClInclude Include="HamsterController.h" />
     <ClInclude Include="HamsterGame.h" />

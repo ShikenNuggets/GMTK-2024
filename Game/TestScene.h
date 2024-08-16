@@ -4,6 +4,7 @@
 #include <Physics/SphereCollider.h>
 
 #include "BallController.h"
+#include "CameraController.h"
 #include "HamsterController.h"
 
 using namespace Gadget;
@@ -18,7 +19,9 @@ protected:
 
 		GameObject* camera = new GameObject(SID("CameraObj"));
 		camera->SetPosition(0.0f, 2.0f, 10.0f);
+		camera->SetRotation(-15.0f, 0.0f, 0.0f);
 		camera->AddComponent(new CameraComponent(camera));
+		camera->AddComponent(new CameraController(camera));
 		camera->AddTag(SID("Camera"));
 		CreateObject(camera);
 
