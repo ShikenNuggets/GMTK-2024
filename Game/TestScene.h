@@ -22,11 +22,17 @@ protected:
 		camera->AddTag(SID("Camera"));
 		CreateObject(camera);
 
-		GameObject* floor = new GameObject(SID("Floor"));
-		floor->SetScale(10.0f, 0.1f, 10.0f);
-		floor->AddComponent(new RenderComponent(floor->GetGUID(), SID("CubeModel"), SID("BrickMaterial")));
-		floor->AddComponent(new CubeCollider(floor));
-		CreateObject(floor);
+		for(int i = -3; i < 3; i++){
+			for(int j = -3; j < 3; j++){
+				GameObject* floor = new GameObject(SID("Floor"));
+				floor->SetPosition(i * 5.0f, 0.0f, j * 5.0f);
+				floor->SetScale(5.0f, 0.1f, 5.0f);
+				floor->AddComponent(new RenderComponent(floor->GetGUID(), SID("CubeModel"), SID("BrickMaterial")));
+				floor->AddComponent(new CubeCollider(floor));
+				CreateObject(floor);
+			}
+			
+		}
 
 		GameObject* hamster = new GameObject(SID("Hamster"));
 		hamster->SetPosition(0.0f, 0.0f, 0.0f);
