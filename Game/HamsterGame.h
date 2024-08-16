@@ -29,6 +29,11 @@ public:
 		vertical.AddButtonAxis(ButtonAxis(ButtonID::Keyboard_Arrow_Up, ButtonID::Keyboard_Arrow_Down));
 		vertical.AddAxisID(AxisID::Gamepad_LeftStick_Vertical);
 		App::GetInput().DefineAxis(vertical);
+
+		Button jump = Button(SID("Jump"));
+		jump.AddButtonID(ButtonID::Keyboard_Space);
+		jump.AddButtonID(ButtonID::Gamepad_Face_Down);
+		App::GetInput().DefineButton(jump);
 	}
 
 	void DefineMaterials(){

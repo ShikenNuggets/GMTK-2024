@@ -28,6 +28,7 @@ public:
 			return;
 		}
 
+		//Rolling
 		float hor = App::GetInput().GetAxis(SID("Horizontal"));
 		float ver = App::GetInput().GetAxis(SID("Vertical"));
 
@@ -40,10 +41,21 @@ public:
 			direction.Normalize();
 		}
 
-		rb->AddVelocity(direction * magnitude * 15.0f * deltaTime_);
+		rb->AddVelocity(direction * magnitude * moveSpeed * deltaTime_);
+
+		//Jumping
+		if(App::GetInput().GetButtonDown(SID("Jump"))){
+			Vector3 oldVelocity = rb->GetVelocity();
+			rb->SetVelocity(oldVelocity.x, 0.0f, oldVelocity.z);
+
+			rb->AddForce(Vector3::Up() * jumpForce);
+		}
 	}
 
 private:
+	static constexpr float moveSpeed = 15.0f;
+	static constexpr float jumpForce = 7'500.0f;
+
 	GameObject* cameraObj;
 	Rigidbody* rb;
 };
