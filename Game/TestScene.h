@@ -3,6 +3,7 @@
 #include <Game/Scene.h>
 #include <Physics/SphereCollider.h>
 
+#include "BallController.h"
 #include "HamsterController.h"
 
 using namespace Gadget;
@@ -18,6 +19,7 @@ protected:
 		GameObject* camera = new GameObject(SID("CameraObj"));
 		camera->SetPosition(0.0f, 2.0f, 10.0f);
 		camera->AddComponent(new CameraComponent(camera));
+		camera->AddTag(SID("Camera"));
 		CreateObject(camera);
 
 		GameObject* floor = new GameObject(SID("Floor"));
@@ -40,6 +42,7 @@ protected:
 		ball->AddComponent(new RenderComponent(ball->GetGUID(), SID("SphereModel"), SID("GlassMaterial")));
 		ball->AddComponent(new SphereCollider(ball, 1.0f));
 		ball->AddComponent(new Rigidbody(ball, 1.0f, true));
+		ball->AddComponent(new BallController(ball));
 		ball->AddTag(SID("Ball"));
 		CreateObject(ball);
 	}

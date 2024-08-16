@@ -18,6 +18,17 @@ public:
 	}
 
 	void DefineInputs(){
+		Axis horizontal = Axis(SID("Horizontal"));
+		horizontal.AddButtonAxis(ButtonAxis(ButtonID::Keyboard_A, ButtonID::Keyboard_D));
+		horizontal.AddButtonAxis(ButtonAxis(ButtonID::Keyboard_Arrow_Left, ButtonID::Keyboard_Arrow_Right));
+		horizontal.AddAxisID(AxisID::Gamepad_LeftStick_Horizontal);
+		App::GetInput().DefineAxis(horizontal);
+
+		Axis vertical = Axis(SID("Vertical"));
+		vertical.AddButtonAxis(ButtonAxis(ButtonID::Keyboard_S, ButtonID::Keyboard_W));
+		vertical.AddButtonAxis(ButtonAxis(ButtonID::Keyboard_Arrow_Down, ButtonID::Keyboard_Arrow_Up));
+		vertical.AddAxisID(AxisID::Gamepad_LeftStick_Vertical);
+		App::GetInput().DefineAxis(vertical);
 	}
 
 	void DefineMaterials(){
