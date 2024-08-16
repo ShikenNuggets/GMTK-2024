@@ -26,6 +26,14 @@ public:
 
 	virtual void OnUpdate(float deltaTime_){
 		GameLogicComponent::OnUpdate(deltaTime_);
+
+		#ifdef GADGET_DEBUG
+		if(App::GetInput().GetButtonDown(ButtonID::Keyboard_Escape)){
+			App::CloseGame();
+		}
+		#endif // GADGET_DEBUG
+
+
 		if(rb == nullptr || cameraObj == nullptr){
 			return;
 		}
