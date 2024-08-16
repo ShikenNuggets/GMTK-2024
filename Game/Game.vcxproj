@@ -18,6 +18,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HamsterController.h" />
     <ClInclude Include="HamsterGame.h" />
     <ClInclude Include="TestScene.h" />
   </ItemGroup>

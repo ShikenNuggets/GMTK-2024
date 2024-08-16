@@ -3,6 +3,8 @@
 #include <Game/Scene.h>
 #include <Physics/SphereCollider.h>
 
+#include "HamsterController.h"
+
 using namespace Gadget;
 
 class TestScene : public Scene{
@@ -19,7 +21,7 @@ protected:
 		CreateObject(camera);
 
 		GameObject* floor = new GameObject(SID("Floor"));
-		floor->SetScale(10.0f, 0.01f, 10.0f);
+		floor->SetScale(10.0f, 0.1f, 10.0f);
 		floor->AddComponent(new RenderComponent(floor->GetGUID(), SID("CubeModel"), SID("BrickMaterial")));
 		floor->AddComponent(new CubeCollider(floor));
 		CreateObject(floor);
@@ -29,14 +31,16 @@ protected:
 		hamster->Rotate(90.0f, 0.0f, 180.0f);
 		hamster->SetScale(25.0f);
 		hamster->AddComponent(new RenderComponent(hamster->GetGUID(), SID("HamsterModel"), SID("HamsterMaterial")));
+		hamster->AddComponent(new HamsterController(hamster));
 		CreateObject(hamster);
 
-		//TODO - Auto-render transparent objects *after* opaque ones, and in order from distance to the camera
+		//TODO - Engine should force transparent objects to be rendered *after* opaque ones, and in order from distance to the camera (farthest to nearest)
 		GameObject* ball = new GameObject(SID("Ball"));
 		ball->SetPosition(0.0f, 5.0f, 0.0f);
 		ball->AddComponent(new RenderComponent(ball->GetGUID(), SID("SphereModel"), SID("GlassMaterial")));
-		ball->AddComponent(new SphereCollider(ball));
+		ball->AddComponent(new SphereCollider(ball, 1.0f));
 		ball->AddComponent(new Rigidbody(ball, 1.0f, true));
+		ball->AddTag(SID("Ball"));
 		CreateObject(ball);
 	}
 };
