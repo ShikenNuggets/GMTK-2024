@@ -13,24 +13,7 @@
 #include <Gadget.h>
 #include <Memory/GlobalAllocator.h>
 
-class SampleScene : public Gadget::Scene{
-public:
-	SampleScene() : Scene(SID("SampleScene")){}
-
-protected:
-	virtual void SetToDefaultState() override{
-		Scene::SetToDefaultState();
-	}
-};
-
-class SampleGame : public Gadget::GameInterface{
-public:
-	SampleGame() : GameInterface("SampleGame"){}
-
-	void LoadGame(){
-		Gadget::App::GetInstance().GetSceneManager().AddScene(new SampleScene());
-	}
-};
+#include "HamsterGame.h"
 
 int main(int argc, char* argv[]){
 #ifdef GADGET_DEBUG
@@ -45,7 +28,7 @@ int main(int argc, char* argv[]){
 		std::cout << argv[i] << "\n";
 	}
 
-	SampleGame game = SampleGame();
+	HamsterGame game = HamsterGame();
 
 	try{
 		Gadget::App::GetInstance().Run(game);
