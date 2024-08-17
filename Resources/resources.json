@@ -219,7 +219,7 @@
             "string": "StainlessSteelTexture"
         },
         {
-            "path": "Resources/StainlessSteel.jpg",
+            "path": "Resources/StainlessSteel.png",
             "resource_type": "Texture"
         }
     ],
@@ -284,6 +284,15 @@
         {
             "path": "Resources/Kitchen.png",
             "resource_type": "Texture"
+        }
+    ],
+	[
+        {
+            "string": "LevelMusic"
+        },
+        {
+            "path": "Resources/SergiosMagicDustbin.mp3",
+            "resource_type": "AudioClip"
         }
     ]
 ]
