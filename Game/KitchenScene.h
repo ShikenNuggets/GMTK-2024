@@ -118,5 +118,7 @@ protected:
 		CreateObject(new HamsterObject());
 		//This must be the last object we create
 		CreateObject(new BallObject(Vector3(0.0f, 5.0f, 0.0f)));
+
+		AddSceneComponent(new SkyboxComponent(this, SID("KitchenSky")));
 	}
 };

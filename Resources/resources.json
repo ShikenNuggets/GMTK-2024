@@ -231,5 +231,59 @@
             "path": "Resources/Sink.fbx",
             "resource_type": "Mesh"
         }
+    ],
+	[
+        {
+            "string": "KitchenSkyRightTexture"
+        },
+        {
+            "path": "Resources/Kitchen.png",
+            "resource_type": "Texture"
+        }
+    ],
+	[
+        {
+            "string": "KitchenSkyLeftTexture"
+        },
+        {
+            "path": "Resources/Kitchen.png",
+            "resource_type": "Texture"
+        }
+    ],
+	[
+        {
+            "string": "KitchenSkyTopTexture"
+        },
+        {
+            "path": "Resources/Kitchen.png",
+            "resource_type": "Texture"
+        }
+    ],
+	[
+        {
+            "string": "KitchenSkyBottomTexture"
+        },
+        {
+            "path": "Resources/Kitchen.png",
+            "resource_type": "Texture"
+        }
+    ],
+	[
+        {
+            "string": "KitchenSkyFrontTexture"
+        },
+        {
+            "path": "Resources/Kitchen.png",
+            "resource_type": "Texture"
+        }
+    ],
+	[
+        {
+            "string": "KitchenSkyBackTexture"
+        },
+        {
+            "path": "Resources/Kitchen.png",
+            "resource_type": "Texture"
+        }
     ]
 ]
