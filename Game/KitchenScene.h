@@ -98,6 +98,10 @@ protected:
 		faucet->AddComponent(new RenderComponent(faucet->GetGUID(), SID("FaucetModel"), SID("SinkMaterial")));
 		CreateObject(faucet);
 
+		GameObject* dirLight = new GameObject(SID("DirLight"));
+		dirLight->AddComponent(new DirectionalLightComponent(dirLight, Vector3(-0.5f, -1.0f, -0.25f).Normalized()));
+		CreateObject(dirLight); //TODO - Forgot to add this earlier and nothing complained, check for undeleted objects on shutdown
+
 		HamsterObject* hm = new HamsterObject();
 		CreateObject(new HamsterObject());
 		//This must be the last object we create
