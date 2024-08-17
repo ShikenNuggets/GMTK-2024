@@ -24,6 +24,7 @@
     <ClInclude Include="CameraController.h" />
     <ClInclude Include="CameraObject.h" />
     <ClInclude Include="FloorObject.h" />
+    <ClInclude Include="GameplayCanvasSceneComponent.h" />
     <ClInclude Include="GrowState.h" />
     <ClInclude Include="HamsterController.h" />
     <ClInclude Include="HamsterGame.h" />

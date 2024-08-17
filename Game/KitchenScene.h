@@ -5,6 +5,7 @@
 #include "BallObject.h"
 #include "CameraObject.h"
 #include "FloorObject.h"
+#include "GameplayCanvasSceneComponent.h"
 #include "HamsterObject.h"
 
 using namespace Gadget;
@@ -119,6 +120,7 @@ protected:
 		//This must be the last object we create
 		CreateObject(new BallObject(Vector3(0.0f, 5.0f, 0.0f)));
 
+		AddSceneComponent(new GameplayCanvasSceneComponent(this, SID("MainCanvas")));
 		AddSceneComponent(new SkyboxComponent(this, SID("KitchenSky")));
 	}
 };

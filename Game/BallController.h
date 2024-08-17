@@ -2,13 +2,14 @@
 
 #include <Gadget.h>
 
+#include "GameplayCanvasSceneComponent.h"
 #include "GrowState.h"
 
 using namespace Gadget;
 
 class BallController : public GameLogicComponent{
 public:
-	BallController(GameObject* parent_) : GameLogicComponent(SID("BallController"), parent_), cameraObj(nullptr), rb(nullptr), jumpCooldownTimer(0.0f), currentState(GrowState::Normal), canChangeState(true), oldScale(sizes[GrowState::Normal]), targetScale(sizes[GrowState::Normal]), scaleTimer(0.0f){}
+	BallController(GameObject* parent_) : GameLogicComponent(SID("BallController"), parent_), cameraObj(nullptr), rb(nullptr), gameplayCanvas(nullptr), jumpCooldownTimer(0.0f), currentState(GrowState::Normal), canChangeState(true), oldScale(sizes[GrowState::Normal]), targetScale(sizes[GrowState::Normal]), scaleTimer(0.0f){}
 
 	virtual void OnStart(){
 		GADGET_BASIC_ASSERT(parent != nullptr);
@@ -20,6 +21,9 @@ public:
 
 		cameraObj = App::GetSceneManager().CurrentScene()->FindWithTag(SID("Camera"));
 		GADGET_BASIC_ASSERT(cameraObj != nullptr);
+
+		gameplayCanvas = App::GetSceneManager().CurrentScene()->GetSceneComponent<GameplayCanvasSceneComponent>();
+		GADGET_BASIC_ASSERT(gameplayCanvas != nullptr);
 
 		GameLogicComponent::OnStart();
 	}
@@ -61,6 +65,10 @@ public:
 
 			rb->AddVelocity(Vector3::Up() * jumpForce); //TODO - Add Force appears to be framerate dependent
 			jumpCooldownTimer = jumpCooldownTime;
+
+			if(gameplayCanvas != nullptr){
+				gameplayCanvas->StartJumpBar(jumpCooldownTime);
+			}
 		}
 
 		//Growing and Shrinking
@@ -107,6 +115,7 @@ private:
 
 	GameObject* cameraObj;
 	Rigidbody* rb;
+	GameplayCanvasSceneComponent* gameplayCanvas;
 	float jumpCooldownTimer;
 	GrowState currentState;
 	bool canChangeState;
