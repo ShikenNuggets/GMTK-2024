@@ -21,6 +21,8 @@ public:
 		App::GetSceneManager().AddScene(new MainMenuScene());
 
 		App::GetPhysics().SetWorldGravity(-25.0f);
+
+		App::GetRenderer().SetCullFace(Renderer::CullFace::None);
 	}
 
 	void DefineInputs(){
@@ -59,6 +61,6 @@ public:
 		App::GetMaterialCache().AddMaterial(SID("BrickMaterial"), new DiffuseTextureMaterial(SID("CubeTexture"), SID("DefaultShader")));
 		App::GetMaterialCache().AddMaterial(SID("GlassMaterial"), new DiffuseTextureMaterial(SID("GlassTexture"), SID("UnlitShader")));
 		App::GetMaterialCache().AddMaterial(SID("HamsterMaterial"), new DiffuseTextureMaterial(SID("HamsterTexture"), SID("DefaultShader")));
-		App::GetMaterialCache().AddMaterial(SID("SinkMaterial"), new DiffuseTextureMaterial(SID("StainlessSteelTexture"), SID("UnlitShader")));
+		App::GetMaterialCache().AddMaterial(SID("SinkMaterial"), new DiffuseTextureMaterial(SID("StainlessSteelTexture"), SID("DefaultShader")));
 	}
 };

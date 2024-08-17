@@ -98,8 +98,20 @@ protected:
 		faucet->AddComponent(new RenderComponent(faucet->GetGUID(), SID("FaucetModel"), SID("SinkMaterial")));
 		CreateObject(faucet);
 
+		GameObject* sink = new GameObject(SID("Sink"));
+		sink->SetPosition(0.0f, -7.0f, -37.5f);
+		sink->Rotate(-90.0f, 0.0f, 0.0f);
+		sink->SetScale(12.25f, 25.0f, 7.5f);
+		sink->AddComponent(new RenderComponent(sink->GetGUID(), SID("SinkModel"), SID("SinkMaterial")));
+		CreateObject(sink);
+
+		GameObject* pointLight = new GameObject(SID("PointLight"));
+		pointLight->SetPosition(sink->GetPosition() + Vector3(0.0f, -5.0f, 0.0f));
+		pointLight->AddComponent(new PointLightComponent(pointLight));
+		CreateObject(pointLight);
+
 		GameObject* dirLight = new GameObject(SID("DirLight"));
-		dirLight->AddComponent(new DirectionalLightComponent(dirLight, Vector3(-0.5f, -1.0f, -0.25f).Normalized()));
+		dirLight->AddComponent(new DirectionalLightComponent(dirLight, Vector3(0.8f, -1.0f, -0.5f).Normalized()));
 		CreateObject(dirLight); //TODO - Forgot to add this earlier and nothing complained, check for undeleted objects on shutdown
 
 		HamsterObject* hm = new HamsterObject();
