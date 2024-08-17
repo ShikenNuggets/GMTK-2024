@@ -1,6 +1,8 @@
 #pragma once
 
 #include <Gadget.h>
+#include <Graphics/GUI/FpsDisplayElement.h>
+#include <Graphics/GUI/TimerDisplayElement.h>
 
 using namespace Gadget;
 
@@ -9,6 +11,13 @@ public:
 	GameplayCanvasSceneComponent(Scene* parent_, StringID name_) : CanvasSceneComponent(parent_, new GuiCanvas(name_)), jumpBar(nullptr), jumpBarTimer(0.0f), jumpBarTime(0.0f){
 		jumpBar = new GuiTextureElement(SID("JumpBar"), SID("ButtonTexture"), Vector2(0.0f, -0.8f), Vector2(0.0f, jumpBarHeight), GuiAnchor::Center);
 		GetCanvas().AddElement(jumpBar);
+
+		timer = new TimerDisplayElement(SID("Timer"), SID("ArialFont"), TimerDisplayElement::Type::TimerToZero, musicDuration, Vector2(0.0f, 0.8f), Gadget::Vector2(0.5f, 0.25f), GuiAnchor::Center);
+		GetCanvas().AddElement(timer);
+
+		auto fps = new FpsDisplayElement(SID("FPS"), SID("ArialFont"), Gadget::Vector2(1.65f, -0.95f), Gadget::Vector2(0.125f, 0.125f), Gadget::GuiAnchor::Center);
+		fps->SetColor(Color::Yellow());
+		GetCanvas().AddElement(fps);
 	}
 
 	virtual void OnUpdate(float deltaTime_) override{
@@ -20,6 +29,10 @@ public:
 		}else{
 			jumpBar->SetSize(Vector2(jumpBarFullWidth * (jumpBarTimer / jumpBarTime), jumpBarHeight));
 		}
+
+		if(timer->GetTimer() <= musicDuration - finalWarningTime){
+			timer->SetColor(Color::Red());
+		}
 	}
 
 	void StartJumpBar(float jumpBarTime_){
@@ -29,10 +42,14 @@ public:
 	}
 
 private:
+	static constexpr float musicDuration = 145.538f;
+	static constexpr float finalWarningTime = 106.596f;
+
 	static constexpr float jumpBarFullWidth = 0.5f;
 	static constexpr float jumpBarHeight = 0.01f;
 
 	GuiTextureElement* jumpBar;
+	TimerDisplayElement* timer;
 	float jumpBarTimer;
 	float jumpBarTime;
 };
