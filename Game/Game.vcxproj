@@ -186,6 +186,7 @@ echo D|xcopy "$(SolutionDir)Resources\" "$(TargetDir)Resources\" /y /E /d</Comma
       <AdditionalDependencies>assimp-vc143-mt.lib;Glad.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;freetype.lib;BulletCollision.lib;BulletDynamics.lib;BulletLinearMath.lib;fsbank_vc.lib;dxgi.lib;d3d12.lib;fmod_vc.lib;fmodstudio_vc.lib;GadgetEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\GadgetEngine\Build\SDL2\Release;..\GadgetEngine\Build\SDL2main\Release;..\GadgetEngine\Build\Glad\Release;..\GadgetEngine\SDK\Assimp\lib\x64;..\GadgetEngine\SDK\freetype\libs\Release;..\GadgetEngine\SDK\lib;..\GadgetEngine\Build\BulletCollision\Release;..\GadgetEngine\Build\BulletDynamics\Release;..\GadgetEngine\Build\BulletLinearMath\Release;..\GadgetEngine\SDK\FMOD\core\lib;..\GadgetEngine\SDK\FMOD\fsbank\lib;..\GadgetEngine\SDK\FMOD\studio\lib;..\GadgetEngine\Build\GadgetEngine\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libcmtd.lib;msvcrt.lib;msvcrtd.lib</IgnoreSpecificDefaultLibraries>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <Manifest>
       <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>
