@@ -20,10 +20,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BallController.h" />
+    <ClInclude Include="BallObject.h" />
     <ClInclude Include="CameraController.h" />
+    <ClInclude Include="CameraObject.h" />
+    <ClInclude Include="FloorObject.h" />
     <ClInclude Include="GrowState.h" />
     <ClInclude Include="HamsterController.h" />
     <ClInclude Include="HamsterGame.h" />
+    <ClInclude Include="HamsterObject.h" />
+    <ClInclude Include="KitchenScene.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="TestScene.h" />
   </ItemGroup>
