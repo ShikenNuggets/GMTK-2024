@@ -35,6 +35,10 @@ public:
 		if(App::GetInput().GetButtonDown(ButtonID::Keyboard_Escape)){
 			App::CloseGame();
 		}
+
+		if(App::GetInput().GetButtonDown(ButtonID::Keyboard_R)){
+			App::GetSceneManager().RequestReloadCurrentScene();
+		}
 		#endif // GADGET_DEBUG
 
 
