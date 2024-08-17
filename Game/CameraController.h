@@ -8,7 +8,7 @@ using namespace Gadget;
 
 class CameraController : public GameLogicComponent{
 public:
-	CameraController(GameObject* parent_) : GameLogicComponent(SID("CameraController"), parent_), ball(nullptr), currentOffset(defaultOffset), isChangingState(false), stateChangeTimer(0.0f), stateChangeTime(0.0f), oldOffset(defaultOffset), targetOffset(defaultOffset){}
+	CameraController(GameObject* parent_) : GameLogicComponent(SID("CameraController"), parent_), ball(nullptr), currentOffset(defaultOffset), isChangingState(false), stateChangeTimer(0.0f), stateChangeTime(0.0f), oldOffset(defaultOffset), targetOffset(defaultOffset), isConnectedToPlayer(true){}
 
 	virtual void OnStart(){
 		ball = App::GetSceneManager().CurrentScene()->FindWithTag(SID("Ball"));
@@ -19,7 +19,13 @@ public:
 	}
 
 	virtual void OnUpdate(float deltaTime_){
+		GameLogicComponent::OnUpdate(deltaTime_);
+
 		if(ball == nullptr || parent == nullptr){
+			return;
+		}
+
+		if(!isConnectedToPlayer){
 			return;
 		}
 
@@ -35,10 +41,12 @@ public:
 		}
 
 		Vector3 newPos = ball->GetPosition() + currentOffset;
+		if(newPos.y < -2.0f){
+			isConnectedToPlayer = false;
+		}
+
 		newPos.y = Math::Clamp(currentOffset.y, Math::Infinity, newPos.y);
 		parent->SetPosition(newPos);
-
-		GameLogicComponent::OnUpdate(deltaTime_);
 	}
 
 	virtual void OnGrowStateChangeBegins(GrowState state_, float stateChangeTime_){
@@ -79,4 +87,5 @@ private:
 	float stateChangeTime;
 	Vector3 oldOffset;
 	Vector3 targetOffset;
+	bool isConnectedToPlayer;
 };
