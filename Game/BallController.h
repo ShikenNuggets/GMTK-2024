@@ -59,7 +59,7 @@ public:
 
 		//Jumping
 		jumpCooldownTimer -= deltaTime_;
-		if(App::GetInput().GetButtonDown(SID("Jump")) && jumpCooldownTimer <= 0.0f){
+		if(App::GetInput().GetButtonHeld(SID("Jump")) && jumpCooldownTimer <= 0.0f){
 			Vector3 oldVelocity = rb->GetVelocity();
 			rb->SetVelocity(oldVelocity.x, 0.0f, oldVelocity.z);
 
