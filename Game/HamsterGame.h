@@ -2,6 +2,7 @@
 
 #include <Gadget.h>
 
+#include "KitchenScene.h"
 #include "TestScene.h"
 #include "MainMenuScene.h"
 
@@ -15,6 +16,7 @@ public:
 		DefineInputs();
 		DefineMaterials();
 
+		App::GetSceneManager().AddScene(new KitchenScene());
 		App::GetSceneManager().AddScene(new TestScene());
 		App::GetSceneManager().AddScene(new MainMenuScene());
 
