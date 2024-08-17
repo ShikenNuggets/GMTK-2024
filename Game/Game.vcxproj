@@ -24,6 +24,7 @@
     <ClInclude Include="GrowState.h" />
     <ClInclude Include="HamsterController.h" />
     <ClInclude Include="HamsterGame.h" />
+    <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="TestScene.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -3,6 +3,7 @@
 #include <Gadget.h>
 
 #include "TestScene.h"
+#include "MainMenuScene.h"
 
 using namespace Gadget;
 
@@ -15,6 +16,7 @@ public:
 		DefineMaterials();
 
 		App::GetSceneManager().AddScene(new TestScene());
+		App::GetSceneManager().AddScene(new MainMenuScene());
 
 		App::GetPhysics().SetWorldGravity(-25.0f);
 	}
