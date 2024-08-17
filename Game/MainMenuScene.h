@@ -2,6 +2,8 @@
 
 #include <Gadget.h>
 
+#include "CameraObject.h"
+
 using namespace Gadget;
 
 class MainMenuScene : public Scene{
@@ -31,10 +33,6 @@ protected:
 
 		AddSceneComponent(new CanvasSceneComponent(this, canvas));
 
-		GameObject* camera = new Gadget::GameObject();
-		camera->SetPosition(0.0f, 0.0f, 0.0f);
-		camera->AddComponent(new Gadget::CameraComponent(camera));
-		camera->AddComponent(new AudioListener(camera));
-		CreateObject(camera);
+		CreateObject(new CameraObject(Vector3::Zero(), false));
 	}
 };
