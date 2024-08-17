@@ -222,5 +222,14 @@
             "path": "Resources/StainlessSteel.jpg",
             "resource_type": "Texture"
         }
+    ],
+	[
+        {
+            "string": "SinkModel"
+        },
+        {
+            "path": "Resources/Sink.fbx",
+            "resource_type": "Mesh"
+        }
     ]
 ]
