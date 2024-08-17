@@ -64,6 +64,7 @@ protected:
 		faucet->SetPosition(-18.0f, 5.0f, -30.0f);
 		faucet->SetRotation(90.0f, -90.0f, 180.0f);
 		faucet->AddComponent(new RenderComponent(faucet->GetGUID(), SID("FaucetModel"), SID("SinkMaterial")));
+		faucet->AddComponent(new CubeCollider(faucet, 10.0f, 2.5f, 50.0f));
 		CreateObject(faucet);
 
 		GameObject* sink = new GameObject(SID("Sink"));
