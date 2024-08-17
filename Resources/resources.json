@@ -204,5 +204,23 @@
             "path": "Resources/Hamster_Diffuse.png",
             "resource_type": "Texture"
         }
+    ],
+	[
+        {
+            "string": "FaucetModel"
+        },
+        {
+            "path": "Resources/Faucet.fbx",
+            "resource_type": "Mesh"
+        }
+    ],
+	[
+        {
+            "string": "StainlessSteelTexture"
+        },
+        {
+            "path": "Resources/StainlessSteel.jpg",
+            "resource_type": "Texture"
+        }
     ]
 ]

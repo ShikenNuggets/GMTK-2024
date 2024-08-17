@@ -92,6 +92,12 @@ protected:
 			}
 		}
 
+		GameObject* faucet = new GameObject(SID("Faucet"));
+		faucet->SetPosition(-18.0f, 5.0f, -30.0f);
+		faucet->SetRotation(90.0f, -90.0f, 180.0f);
+		faucet->AddComponent(new RenderComponent(faucet->GetGUID(), SID("FaucetModel"), SID("SinkMaterial")));
+		CreateObject(faucet);
+
 		HamsterObject* hm = new HamsterObject();
 		CreateObject(new HamsterObject());
 		//This must be the last object we create
