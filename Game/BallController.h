@@ -39,6 +39,16 @@ public:
 		if(App::GetInput().GetButtonDown(ButtonID::Keyboard_R)){
 			App::GetSceneManager().RequestReloadCurrentScene();
 		}
+
+		if(App::GetInput().GetButtonDown(ButtonID::Keyboard_M)){
+			double curVolume = App::GetConfig().GetOptionFloat(EngineVars::Audio::musicVolumeKey);
+			if(curVolume < 0.5){
+				curVolume = 1.0;
+			}else{
+				curVolume = 0.0;
+			}
+			App::GetConfig().SetOption(EngineVars::Audio::sectionName, EngineVars::Audio::musicVolumeKey, curVolume);
+		}
 		#endif // GADGET_DEBUG
 
 
