@@ -76,7 +76,7 @@ protected:
 	virtual void SetToDefaultState() override{
 		Scene::SetToDefaultState();
 
-		CreateObject(new CameraObject(Vector3(0.0f, 2.0f, 10.0f), true));
+		CreateObject(new CameraObject(Vector3(0.0f, 2.0f, 10.0f), true, SID("LevelMusic")));
 
 		for(int i = 0; i < 55; i++){
 			for(int j = 0; j < 9; j++){
