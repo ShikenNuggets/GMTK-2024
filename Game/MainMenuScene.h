@@ -19,6 +19,10 @@ protected:
 		GuiButton* creditsButton = new GuiButton(SID("CreditsButton"), "Credits", SID("ArialFont"), SID("ButtonTexture"), Vector2(0.0f, 0.0f), Vector2(0.2f, 0.1f), GuiAnchor::Center);
 		GuiButton* quitButton = new GuiButton(SID("QuitButton"), "Quit", SID("ArialFont"), SID("ButtonTexture"), Vector2(0.0f, -0.25f), Vector2(0.2f, 0.1f), GuiAnchor::Center);
 
+		startButton->SetOnClickCallback([](ButtonID id_, const Vector2& v){ App::GetSceneManager().RequestSceneLoad(SID("TestScene")); });
+		creditsButton->SetOnClickCallback([](ButtonID id_, const Vector2& v_){});
+		quitButton->SetOnClickCallback([](ButtonID id_, const Vector2& v){ App::CloseGame(); });
+
 		GuiCanvas* canvas = new GuiCanvas(SID("MainCanvas"));
 		canvas->AddElement(titleText);
 		canvas->AddElement(startButton);
