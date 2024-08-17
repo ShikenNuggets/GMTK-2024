@@ -29,24 +29,6 @@
     ],
     [
         {
-            "string": "SkyboxBackTexture"
-        },
-        {
-            "path": "Resources/skybox/back.png",
-            "resource_type": "Texture"
-        }
-    ],
-    [
-        {
-            "string": "SkyboxRightTexture"
-        },
-        {
-            "path": "Resources/skybox/right.png",
-            "resource_type": "Texture"
-        }
-    ],
-    [
-        {
             "string": "DefaultShader"
         },
         {
@@ -97,15 +79,6 @@
     ],
     [
         {
-            "string": "SkyboxTopTexture"
-        },
-        {
-            "path": "Resources/skybox/top.png",
-            "resource_type": "Texture"
-        }
-    ],
-    [
-        {
             "string": "ArialFont"
         },
         {
@@ -133,15 +106,6 @@
     ],
     [
         {
-            "string": "SkyboxLeftTexture"
-        },
-        {
-            "path": "Resources/skybox/left.png",
-            "resource_type": "Texture"
-        }
-    ],
-    [
-        {
             "string": "ScreenInvertShader"
         },
         {
@@ -158,24 +122,6 @@
             "path1": "Resources/Shaders/OpenGL/screenVert.glsl",
             "path2": "Resources/Shaders/OpenGL/screenFrag.glsl",
             "resource_type": "GL_Shader"
-        }
-    ],
-    [
-        {
-            "string": "SkyboxBottomTexture"
-        },
-        {
-            "path": "Resources/skybox/bottom.png",
-            "resource_type": "Texture"
-        }
-    ],
-    [
-        {
-            "string": "SkyboxFrontTexture"
-        },
-        {
-            "path": "Resources/skybox/front.png",
-            "resource_type": "Texture"
         }
     ],
     [
