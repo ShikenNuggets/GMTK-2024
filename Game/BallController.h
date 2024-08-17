@@ -59,7 +59,7 @@ public:
 			Vector3 oldVelocity = rb->GetVelocity();
 			rb->SetVelocity(oldVelocity.x, 0.0f, oldVelocity.z);
 
-			rb->AddForce(Vector3::Up() * jumpForce);
+			rb->AddVelocity(Vector3::Up() * jumpForce); //TODO - Add Force appears to be framerate dependent
 			jumpCooldownTimer = jumpCooldownTime;
 		}
 
@@ -93,7 +93,7 @@ public:
 
 private:
 	static constexpr float moveSpeed = 15.0f;
-	static constexpr float jumpForce = 12'500.0f;
+	static constexpr float jumpForce = 20.0f;
 	static constexpr float jumpCooldownTime = 1.5f;
 	static constexpr float scaleTime = 1.0f;
 

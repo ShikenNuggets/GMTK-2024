@@ -16,7 +16,7 @@ public:
 
 		App::GetSceneManager().AddScene(new TestScene());
 
-		App::GetPhysics().SetWorldGravity(-20.0f);
+		App::GetPhysics().SetWorldGravity(-25.0f);
 	}
 
 	void DefineInputs(){
