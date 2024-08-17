@@ -15,83 +15,50 @@ public:
 	KitchenScene() : Scene(SID("KitchenScene")){}
 
 protected:
-	static constexpr std::array<std::array<int, 9>, 55> tiles = {
-		std::array<int, 9>{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 0, 0, 0, 0, 0, 1, 1 },
-		{ 1, 1, 0, 0, 0, 0, 0, 1, 1 },
-		{ 1, 1, 0, 0, 0, 0, 0, 1, 1 },
-		{ 1, 1, 0, 0, 0, 0, 0, 1, 1 },
-		{ 1, 1, 0, 0, 0, 0, 0, 1, 1 },
-		{ 1, 1, 0, 0, 0, 0, 0, 1, 1 },
-		{ 1, 1, 0, 0, 0, 0, 0, 1, 1 },
-		{ 1, 1, 0, 0, 0, 0, 0, 1, 1 },
-		{ 1, 1, 0, 0, 0, 0, 0, 1, 1 },
-		{ 1, 1, 0, 0, 0, 0, 0, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 }
-	};
-
 	virtual void SetToDefaultState() override{
 		Scene::SetToDefaultState();
 
 		CreateObject(new CameraObject(Vector3(0.0f, 2.0f, 10.0f), true, SID("LevelMusic")));
 
-		for(int i = 0; i < 55; i++){
-			for(int j = 0; j < 9; j++){
-				if(tiles[i][j] == 0){
-					continue;
-				}
+		//First section
+		CreateObject(new FloorObject(
+			Vector3(0.0f, 0.0f, -5.0f),
+			Quaternion::Identity(),
+			Vector3(levelWidth, 1.0f, 15.0f),
+			SID("BrickMaterial")
+		));
 
-				CreateObject(new FloorObject(
-					Vector3((j * 5.0f) - 20.0f, 0.0f, i * -5.0f),
-					Quaternion::Identity(),
-					Vector3(5.0f, 1.0f, 5.0f),
-					SID("BrickMaterial")
-				));
-			}
-		}
+		//Sink Left
+		CreateObject(new FloorObject(
+			Vector3(-17.5f, 0.0f, -37.5f),
+			Quaternion::Identity(),
+			Vector3(10.0f, 1.0f, 50.0f),
+			SID("BrickMaterial")
+		));
+
+		//Sink Right
+		CreateObject(new FloorObject(
+			Vector3(17.5f, 0.0f, -37.5f),
+			Quaternion::Identity(),
+			Vector3(10.0f, 1.0f, 50.0f),
+			SID("BrickMaterial")
+		));
+
+		//Section Before Stove Gap
+		CreateObject(new FloorObject(
+			Vector3(0.0f, 0.0f, -117.5f),
+			Quaternion::Identity(),
+			Vector3(levelWidth, 1.0f, 110.0f),
+			SID("BrickMaterial")
+		));
+
+		//Section After Stove Gap
+		CreateObject(new FloorObject(
+			Vector3(0.0f, 0.0f, 50.0f * -5.0f),
+			Quaternion::Identity(),
+			Vector3(levelWidth, 1.0f, 55.0f),
+			SID("BrickMaterial")
+		));
 
 		GameObject* faucet = new GameObject(SID("Faucet"));
 		faucet->SetPosition(-18.0f, 5.0f, -30.0f);
@@ -117,10 +84,12 @@ protected:
 
 		HamsterObject* hm = new HamsterObject();
 		CreateObject(new HamsterObject());
-		//This must be the last object we create
-		CreateObject(new BallObject(Vector3(0.0f, 5.0f, 0.0f)));
+		CreateObject(new BallObject(Vector3(0.0f, 5.0f, 0.0f))); //This must be the last object we create!!!
 
 		AddSceneComponent(new GameplayCanvasSceneComponent(this, SID("MainCanvas")));
 		AddSceneComponent(new SkyboxComponent(this, SID("KitchenSky")));
 	}
+
+private:
+	static constexpr float levelWidth = 45.0f;
 };
