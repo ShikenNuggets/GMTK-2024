@@ -34,7 +34,9 @@ public:
 			}
 		}
 
-		parent->SetPosition(ball->GetPosition() + currentOffset);
+		Vector3 newPos = ball->GetPosition() + currentOffset;
+		newPos.y = Math::Clamp(currentOffset.y, Math::Infinity, newPos.y);
+		parent->SetPosition(newPos);
 
 		GameLogicComponent::OnUpdate(deltaTime_);
 	}
