@@ -70,9 +70,9 @@ public:
 	}
 
 private:
-	static constexpr Vector3 defaultOffset = Vector3(0.0f, -0.8f, 0.0f);
-	static constexpr Vector3 shrinkOffset = Vector3(0.0f, -0.08f, 0.0f);
-	static constexpr Vector3 growOffset = Vector3(0.0f, -9.0f, 0.0f);
+	static constexpr Vector3 defaultOffset = Vector3(0.0f, -0.81f, 0.0f);
+	static constexpr Vector3 shrinkOffset = Vector3(0.0f, -0.081f, 0.0f);
+	static constexpr Vector3 growOffset = Vector3(0.0f, -4.1f, 0.0f);
 
 	float initialScale;
 	GameObject* ball;

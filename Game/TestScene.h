@@ -38,7 +38,7 @@ protected:
 
 		GameObject* hamster = new GameObject(SID("Hamster"));
 		hamster->SetPosition(0.0f, 0.0f, 0.0f);
-		hamster->Rotate(90.0f, 0.0f, 180.0f);
+		hamster->Rotate(75.0f, 0.0f, 180.0f);
 		hamster->SetScale(25.0f);
 		hamster->AddComponent(new RenderComponent(hamster->GetGUID(), SID("HamsterModel"), SID("HamsterMaterial")));
 		hamster->AddComponent(new HamsterController(hamster));

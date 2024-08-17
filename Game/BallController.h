@@ -102,7 +102,7 @@ private:
 	static constexpr std::array<float, 3> sizes{
 		0.1f, //Shrink
 		1.0f, //Normal
-		10.0f, //Grow
+		5.0f, //Grow
 	};
 
 	GameObject* cameraObj;
