@@ -63,6 +63,16 @@ protected:
 			SID("BrickMaterial")
 		));
 
+		//12 blocks afterwards
+		for(size_t i = 0; i < 12; i++){
+			CreateObject(new FloorObject(
+				Vector3(0.0f, 0.0f, -400 + (-200.0f * i)),
+				Quaternion::Identity(),
+				Vector3(levelWidth, 1.0f, 100.0f),
+				SID("Invalid")
+			));
+		}
+
 		GameObject* faucet = new GameObject(SID("Faucet"));
 		faucet->SetPosition(-18.0f, 5.0f, -30.0f);
 		faucet->SetRotation(90.0f, -90.0f, 180.0f);
@@ -84,6 +94,17 @@ protected:
 		CreateObject(dirLight); //TODO - Forgot to add this earlier and nothing complained, check for undeleted objects on shutdown
 
 		CreateObject(new RampObject(0.0f, -125.0f));
+		CreateObject(new FloorObject(
+			Vector3(-15.0f, 5.0f, -125.0f),
+			Quaternion::Identity(),
+			Vector3(levelWidth / 2.0f, 10.0f, 1.0f)
+		));
+
+		CreateObject(new FloorObject(
+			Vector3(15.0f, 5.0f, -125.0f),
+			Quaternion::Identity(),
+			Vector3(levelWidth / 2.0f, 10.0f, 1.0f)
+		));
 
 		CreateObject(new HamsterObject());
 		CreateObject(new BallObject(Vector3(0.0f, 5.0f, 0.0f))); //This must be the last object we create!!!
