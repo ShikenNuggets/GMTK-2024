@@ -2,7 +2,7 @@
 
 #include <Gadget.h>
 
-#include "CameraObject.h"
+#include "Objects/CameraObject.h"
 
 using namespace Gadget;
 

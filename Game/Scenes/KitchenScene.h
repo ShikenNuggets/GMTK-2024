@@ -2,12 +2,12 @@
 
 #include <Gadget.h>
 
-#include "BallObject.h"
-#include "CameraObject.h"
-#include "FloorObject.h"
-#include "GameHandler.h"
-#include "GameplayCanvasSceneComponent.h"
-#include "HamsterObject.h"
+#include "Components/GameHandler.h"
+#include "Components/GameplayCanvasSceneComponent.h"
+#include "Objects/BallObject.h"
+#include "Objects/CameraObject.h"
+#include "Objects/FloorObject.h"
+#include "Objects/HamsterObject.h"
 
 using namespace Gadget;
 

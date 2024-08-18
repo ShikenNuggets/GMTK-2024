@@ -2,9 +2,9 @@
 
 #include <Gadget.h>
 
-#include "KitchenScene.h"
-#include "TestScene.h"
-#include "MainMenuScene.h"
+#include "Scenes/KitchenScene.h"
+#include "Scenes/TestScene.h"
+#include "Scenes/MainMenuScene.h"
 
 using namespace Gadget;
 

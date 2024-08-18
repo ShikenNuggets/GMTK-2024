@@ -2,9 +2,9 @@
 
 #include <Gadget.h>
 
-#include "GameHandler.h"
-#include "GameplayCanvasSceneComponent.h"
-#include "GrowState.h"
+#include "Components/GameHandler.h"
+#include "Components/GameplayCanvasSceneComponent.h"
+#include "Misc/GrowState.h"
 
 using namespace Gadget;
 

@@ -3,9 +3,9 @@
 #include <Game/Scene.h>
 #include <Physics/SphereCollider.h>
 
-#include "BallObject.h"
-#include "CameraObject.h"
-#include "HamsterObject.h"
+#include "Objects/BallObject.h"
+#include "Objects/CameraObject.h"
+#include "Objects/HamsterObject.h"
 
 using namespace Gadget;
 

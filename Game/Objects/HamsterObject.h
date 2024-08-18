@@ -2,7 +2,7 @@
 
 #include <Gadget.h>
 
-#include "HamsterController.h"
+#include "GameLogic/HamsterController.h"
 
 using namespace Gadget;
 

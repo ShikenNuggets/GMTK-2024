@@ -1,7 +1,7 @@
 #include "GameHandler.h"
 
-#include "BallController.h"
-#include "CameraObject.h"
+#include "GameLogic/BallController.h"
+#include "Objects/CameraObject.h"
 
 void GameHandler::TriggerGameOver(){
 	auto gameplayCanvas = parent->GetSceneComponent<GameplayCanvasSceneComponent>();

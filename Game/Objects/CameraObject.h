@@ -2,7 +2,7 @@
 
 #include <Gadget.h>
 
-#include "CameraController.h"
+#include "GameLogic/CameraController.h"
 
 using namespace Gadget;
 

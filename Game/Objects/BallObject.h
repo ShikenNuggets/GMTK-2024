@@ -2,7 +2,7 @@
 
 #include <Gadget.h>
 
-#include "BallController.h"
+#include "GameLogic/BallController.h"
 
 using namespace Gadget;
 
