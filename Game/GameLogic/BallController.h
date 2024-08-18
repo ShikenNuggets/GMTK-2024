@@ -106,6 +106,7 @@ public:
 			scaleTimer += deltaTime_;
 			if(scaleTimer >= scaleTime){
 				parent->SetScale(targetScale);
+				rb->SetMass(scales[currentState]);
 				canChangeState = true;
 			}else{
 				parent->SetScale(Math::Lerp(oldScale, targetScale, scaleTimer / scaleTime));
@@ -124,6 +125,8 @@ public:
 		}
 	}
 
+	GrowState GetGrowState() const{ return currentState; }
+
 private:
 	static constexpr float moveSpeed = 15.0f;
 	static constexpr float jumpForce = 18.0f;
@@ -136,6 +139,12 @@ private:
 		0.1f, //Shrink
 		1.0f, //Normal
 		5.0f, //Grow
+	};
+
+	static constexpr std::array<float, 3> scales{
+		0.1f, //Shrink
+		1.0f, //Normal
+		100.0f, //Grow
 	};
 
 	GameObject* cameraObj;
