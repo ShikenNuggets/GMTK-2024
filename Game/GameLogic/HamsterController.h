@@ -53,7 +53,6 @@ public:
 
 		if(isMoving){
 			float rotAngle = startRotationX + (Math::Sin(500 * App::GetTime().TimeSinceStartup() - startedMovingTime) * 5.0f);
-			GADGET_LOG(SID("HAMSTER"), std::to_string(Math::Sin(500 * App::GetTime().TimeSinceStartup() - startedMovingTime)));
 			Euler rotation = parent->GetRotation().ToEuler();
 			rotation.x = rotAngle;
 			parent->SetRotation(rotation);
