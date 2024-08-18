@@ -258,5 +258,14 @@
             "path": "Resources/CerealBox.fbx",
             "resource_type": "Mesh"
         }
+    ],
+	[
+        {
+            "string": "RampModel"
+        },
+        {
+            "path": "Resources/Ramp.obj",
+            "resource_type": "Mesh"
+        }
     ]
 ]

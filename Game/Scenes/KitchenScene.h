@@ -92,43 +92,11 @@ protected:
 		dirLight->AddComponent(new DirectionalLightComponent(dirLight, Vector3(0.8f, -1.0f, -0.5f).Normalized()));
 		CreateObject(dirLight); //TODO - Forgot to add this earlier and nothing complained, check for undeleted objects on shutdown
 
-		GameObject* ramp1 = new GameObject(SID("Ramp1"));
-		ramp1->SetPosition(0.0f, -2.5f, -125.0f);
-		ramp1->Rotate(30.0f, 0.0f, 0.0f);
-		ramp1->SetScale(10.0f, 10.0f, 25.0f);
-		ramp1->AddComponent(new RenderComponent(ramp1->GetGUID(), SID("CubeModel"), SID("BrickMaterial")));
-		ramp1->AddComponent(new CubeCollider(ramp1));
-		CreateObject(ramp1);
-
-		GameObject* ramp2 = new GameObject(SID("Ramp2"));
-		ramp2->SetPosition(0.0f, -2.5f, -140.0f);
-		ramp2->Rotate(-30.0f, 0.0f, 0.0f);
-		ramp2->SetScale(10.0f, 10.0f, 25.0f);
-		ramp2->AddComponent(new RenderComponent(ramp2->GetGUID(), SID("CubeModel"), SID("BrickMaterial")));
-		ramp2->AddComponent(new CubeCollider(ramp2));
-		CreateObject(ramp2);
-
-		GameObject* ramp3 = new GameObject(SID("Ramp3"));
-		ramp3->SetPosition(0.0f, -2.5f, -155.0f);
-		ramp3->Rotate(15.0f, 0.0f, 0.0f);
-		ramp3->SetScale(10.0f, 10.0f, 25.0f);
-		ramp3->AddComponent(new RenderComponent(ramp3->GetGUID(), SID("CubeModel"), SID("BrickMaterial")));
-		ramp3->AddComponent(new CubeCollider(ramp3));
-		CreateObject(ramp3);
-
-		GameObject* rampObstacle1 = new GameObject(SID("RampObstacle1"));
-		rampObstacle1->SetPosition(-3.0f, 7.5f, -165.0f);
-		rampObstacle1->SetScale(5.0f, 10.0f, 1.0f);
-		rampObstacle1->AddComponent(new RenderComponent(rampObstacle1->GetGUID(), SID("CubeModel"), SID("BrickMaterial")));
-		rampObstacle1->AddComponent(new CubeCollider(rampObstacle1));
-		CreateObject(rampObstacle1);
-
-		GameObject* rampObstacle2 = new GameObject(SID("RampObstacle2"));
-		rampObstacle2->SetPosition(3.0f, 7.5f, -165.0f);
-		rampObstacle2->SetScale(5.0f, 10.0f, 1.0f);
-		rampObstacle2->AddComponent(new RenderComponent(rampObstacle2->GetGUID(), SID("CubeModel"), SID("BrickMaterial")));
-		rampObstacle2->AddComponent(new CubeCollider(rampObstacle2));
-		CreateObject(rampObstacle2);
+		GameObject* ramp = new GameObject(SID("Ramp"));
+		ramp->SetPosition(0.0f, 0.0f, -125.0f);
+		ramp->AddComponent(new RenderComponent(ramp->GetGUID(), SID("RampModel"), SID("BrickMaterial")));
+		ramp->AddComponent(new MeshCollider(ramp, SID("RampModel"), ColliderShape::ConvexMesh));
+		CreateObject(ramp);
 
 		CreateObject(new HamsterObject());
 		CreateObject(new BallObject(Vector3(0.0f, 5.0f, 0.0f))); //This must be the last object we create!!!
