@@ -33,7 +33,7 @@ protected:
 		CreateObject(new FloorObject(
 			Vector3(-17.5f, 0.0f, -37.5f),
 			Quaternion::Identity(),
-			Vector3(10.0f, 1.0f, 50.0f),
+			Vector3(9.0f, 1.0f, 50.0f),
 			SID("BrickMaterial")
 		));
 
@@ -41,7 +41,7 @@ protected:
 		CreateObject(new FloorObject(
 			Vector3(17.5f, 0.0f, -37.5f),
 			Quaternion::Identity(),
-			Vector3(10.0f, 1.0f, 50.0f),
+			Vector3(9.0f, 1.0f, 50.0f),
 			SID("BrickMaterial")
 		));
 
@@ -76,11 +76,11 @@ protected:
 		CreateObject(sink);
 
 		GameObject* cerealBox = new GameObject(SID("CerealBox"));
-		cerealBox->SetPosition(Vector3(17.5f, 4.0f, -37.5f));
+		cerealBox->SetPosition(Vector3(17.5f, 7.5f, -37.5f));
 		cerealBox->Rotate(-90.0f, 0.0f, 0.0f);
 		cerealBox->AddComponent(new RenderComponent(cerealBox->GetGUID(), SID("CerealBoxModel"), SID("CerealBoxMaterial")));
-		cerealBox->AddComponent(new Rigidbody(cerealBox, 100.0f, true));
-		cerealBox->AddComponent(new CubeCollider(cerealBox, 4.0f, 2.2f, 4.0f));
+		cerealBox->AddComponent(new Rigidbody(cerealBox, 25.0f, true));
+		cerealBox->AddComponent(new CubeCollider(cerealBox, 4.0f, 2.2f, 4.5f));
 		CreateObject(cerealBox);
 		
 		GameObject* pointLight = new GameObject(SID("PointLight"));
