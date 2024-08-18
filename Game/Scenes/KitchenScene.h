@@ -95,13 +95,13 @@ protected:
 
 		CreateObject(new RampObject(0.0f, -125.0f));
 		CreateObject(new FloorObject(
-			Vector3(-15.0f, 5.0f, -125.0f),
+			Vector3(-15.0f, 5.0f, -160.0f),
 			Quaternion::Identity(),
 			Vector3(levelWidth / 2.0f, 10.0f, 1.0f)
 		));
 
 		CreateObject(new FloorObject(
-			Vector3(15.0f, 5.0f, -125.0f),
+			Vector3(15.0f, 5.0f, -160.0f),
 			Quaternion::Identity(),
 			Vector3(levelWidth / 2.0f, 10.0f, 1.0f)
 		));
