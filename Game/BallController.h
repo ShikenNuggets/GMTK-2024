@@ -2,6 +2,7 @@
 
 #include <Gadget.h>
 
+#include "GameHandler.h"
 #include "GameplayCanvasSceneComponent.h"
 #include "GrowState.h"
 
@@ -9,15 +10,15 @@ using namespace Gadget;
 
 class BallController : public GameLogicComponent{
 public:
-	BallController(GameObject* parent_) : GameLogicComponent(SID("BallController"), parent_), cameraObj(nullptr), rb(nullptr), gameplayCanvas(nullptr), jumpCooldownTimer(0.0f), currentState(GrowState::Normal), canChangeState(true), oldScale(sizes[GrowState::Normal]), targetScale(sizes[GrowState::Normal]), scaleTimer(0.0f){}
+	BallController(GameObject* parent_) : GameLogicComponent(SID("BallController"), parent_), cameraObj(nullptr), rb(nullptr), gameplayCanvas(nullptr), jumpCooldownTimer(0.0f), currentState(GrowState::Normal), canChangeState(true), gameOver(false), oldScale(sizes[GrowState::Normal]), targetScale(sizes[GrowState::Normal]), scaleTimer(0.0f){}
 
 	virtual void OnStart(){
 		GADGET_BASIC_ASSERT(parent != nullptr);
 
 		rb = parent->GetComponent<Rigidbody>();
 		GADGET_BASIC_ASSERT(rb != nullptr);
-		rb->SetMaxVelocity(Vector3(10.0f, Math::Infinity, 10.0f));
-		rb->SetBrakingSpeed(5.0f);
+		rb->SetMaxVelocity(Vector3(20.0f, Math::Infinity, 20.0f));
+		rb->SetBrakingSpeed(7.5f);
 
 		cameraObj = App::GetSceneManager().CurrentScene()->FindWithTag(SID("Camera"));
 		GADGET_BASIC_ASSERT(cameraObj != nullptr);
@@ -51,8 +52,7 @@ public:
 		}
 		#endif // GADGET_DEBUG
 
-
-		if(rb == nullptr || cameraObj == nullptr){
+		if(gameOver || rb == nullptr || cameraObj == nullptr){
 			return;
 		}
 
@@ -111,11 +111,22 @@ public:
 				parent->SetScale(Math::Lerp(oldScale, targetScale, scaleTimer / scaleTime));
 			}
 		}
+
+		//Game Over
+		if(parent->GetPosition().y < -2.0f){
+			GameHandler* handler = App::GetSceneManager().CurrentScene()->GetSceneComponent<GameHandler>();
+			GADGET_BASIC_ASSERT(handler != nullptr);
+			if(handler != nullptr){
+				handler->TriggerGameOver();
+			}
+
+			gameOver = true;
+		}
 	}
 
 private:
 	static constexpr float moveSpeed = 15.0f;
-	static constexpr float jumpForce = 20.0f;
+	static constexpr float jumpForce = 18.0f;
 	static constexpr float jumpCooldownTime = 1.5f;
 	static constexpr float scaleTime = 1.0f;
 
@@ -133,6 +144,7 @@ private:
 	float jumpCooldownTimer;
 	GrowState currentState;
 	bool canChangeState;
+	bool gameOver;
 
 	float oldScale;
 	float targetScale;

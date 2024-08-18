@@ -24,4 +24,11 @@ public:
 
 		AddTag(SID("Camera"));
 	}
+
+	void OnGameOver(){
+		CameraController* camera = GetComponent<CameraController>();
+		if(camera != nullptr){
+			camera->OnGameOver();
+		}
+	}
 };

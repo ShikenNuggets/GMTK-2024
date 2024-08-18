@@ -41,6 +41,14 @@ public:
 		jumpBarTimer = jumpBarTime_;
 	}
 
+	void OnGameOver(){
+		std::vector<GuiElement*> elements;
+		GetCanvas().GetElements(elements);
+		for(auto* e : elements){
+			e->SetIsActive(false);
+		}
+	}
+
 private:
 	static constexpr float musicDuration = 145.538f;
 	static constexpr float finalWarningTime = 106.596f;

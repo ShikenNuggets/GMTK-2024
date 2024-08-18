@@ -74,6 +74,10 @@ public:
 		isChangingState = true;
 	}
 
+	void OnGameOver(){
+		isConnectedToPlayer = false;
+	}
+
 private:
 	static constexpr Vector3 defaultOffset = Vector3(0.0f, 3.0f, 10.0f);
 	static constexpr Vector3 shrinkOffset = Vector3(0.0f, 1.0f, 3.0f);
