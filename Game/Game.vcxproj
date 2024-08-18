@@ -24,6 +24,7 @@
     <ClInclude Include="Objects\BallObject.h" />
     <ClInclude Include="GameLogic\CameraController.h" />
     <ClInclude Include="Objects\CameraObject.h" />
+    <ClInclude Include="Objects\CerealBoxObject.h" />
     <ClInclude Include="Objects\FloorObject.h" />
     <ClInclude Include="Components\GameHandler.h" />
     <ClInclude Include="Components\GameplayCanvasSceneComponent.h" />
@@ -31,6 +32,7 @@
     <ClInclude Include="GameLogic\HamsterController.h" />
     <ClInclude Include="HamsterGame.h" />
     <ClInclude Include="Objects\HamsterObject.h" />
+    <ClInclude Include="Objects\RampObject.h" />
     <ClInclude Include="Scenes\KitchenScene.h" />
     <ClInclude Include="Scenes\MainMenuScene.h" />
     <ClInclude Include="Scenes\TestScene.h" />

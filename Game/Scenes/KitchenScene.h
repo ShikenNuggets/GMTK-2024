@@ -6,8 +6,10 @@
 #include "Components/GameplayCanvasSceneComponent.h"
 #include "Objects/BallObject.h"
 #include "Objects/CameraObject.h"
+#include "Objects/CerealBoxObject.h"
 #include "Objects/FloorObject.h"
 #include "Objects/HamsterObject.h"
+#include "Objects/RampObject.h"
 
 using namespace Gadget;
 
@@ -75,28 +77,13 @@ protected:
 		sink->AddComponent(new RenderComponent(sink->GetGUID(), SID("SinkModel"), SID("SinkMaterial")));
 		CreateObject(sink);
 
-		GameObject* cerealBox = new GameObject(SID("CerealBox"));
-		cerealBox->SetPosition(Vector3(17.5f, 7.5f, -37.5f));
-		cerealBox->Rotate(-90.0f, 0.0f, 0.0f);
-		cerealBox->AddComponent(new RenderComponent(cerealBox->GetGUID(), SID("CerealBoxModel"), SID("CerealBoxMaterial")));
-		cerealBox->AddComponent(new Rigidbody(cerealBox, 25.0f, true));
-		cerealBox->AddComponent(new CubeCollider(cerealBox, 4.0f, 2.2f, 4.5f));
-		CreateObject(cerealBox);
-		
-		GameObject* pointLight = new GameObject(SID("PointLight"));
-		pointLight->SetPosition(sink->GetPosition() + Vector3(0.0f, -5.0f, 0.0f));
-		pointLight->AddComponent(new PointLightComponent(pointLight));
-		CreateObject(pointLight);
+		CreateObject(new CerealBoxObject(17.5f, -37.5f));
 
 		GameObject* dirLight = new GameObject(SID("DirLight"));
 		dirLight->AddComponent(new DirectionalLightComponent(dirLight, Vector3(0.8f, -1.0f, -0.5f).Normalized()));
 		CreateObject(dirLight); //TODO - Forgot to add this earlier and nothing complained, check for undeleted objects on shutdown
 
-		GameObject* ramp = new GameObject(SID("Ramp"));
-		ramp->SetPosition(0.0f, 0.0f, -125.0f);
-		ramp->AddComponent(new RenderComponent(ramp->GetGUID(), SID("RampModel"), SID("BrickMaterial")));
-		ramp->AddComponent(new MeshCollider(ramp, SID("RampModel"), ColliderShape::ConvexMesh));
-		CreateObject(ramp);
+		CreateObject(new RampObject(0.0f, -125.0f));
 
 		CreateObject(new HamsterObject());
 		CreateObject(new BallObject(Vector3(0.0f, 5.0f, 0.0f))); //This must be the last object we create!!!
