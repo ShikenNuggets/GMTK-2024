@@ -65,7 +65,7 @@ protected:
 		faucet->SetPosition(-18.0f, 5.0f, -30.0f);
 		faucet->SetRotation(90.0f, -90.0f, 180.0f);
 		faucet->AddComponent(new RenderComponent(faucet->GetGUID(), SID("FaucetModel"), SID("SinkMaterial")));
-		faucet->AddComponent(new CubeCollider(faucet, 10.0f, 2.5f, 50.0f));
+		faucet->AddComponent(new MeshCollider(faucet, SID("FaucetModel"), ColliderShape::ConvexMesh));
 		CreateObject(faucet);
 
 		GameObject* sink = new GameObject(SID("Sink"));
@@ -75,6 +75,14 @@ protected:
 		sink->AddComponent(new RenderComponent(sink->GetGUID(), SID("SinkModel"), SID("SinkMaterial")));
 		CreateObject(sink);
 
+		GameObject* cerealBox = new GameObject(SID("CerealBox"));
+		cerealBox->SetPosition(Vector3(17.5f, 4.0f, -37.5f));
+		cerealBox->Rotate(-90.0f, 0.0f, 0.0f);
+		cerealBox->AddComponent(new RenderComponent(cerealBox->GetGUID(), SID("CerealBoxModel"), SID("CerealBoxMaterial")));
+		cerealBox->AddComponent(new Rigidbody(cerealBox, 100.0f, true));
+		cerealBox->AddComponent(new CubeCollider(cerealBox, 4.0f, 2.2f, 4.0f));
+		CreateObject(cerealBox);
+		
 		GameObject* pointLight = new GameObject(SID("PointLight"));
 		pointLight->SetPosition(sink->GetPosition() + Vector3(0.0f, -5.0f, 0.0f));
 		pointLight->AddComponent(new PointLightComponent(pointLight));
@@ -122,7 +130,6 @@ protected:
 		rampObstacle2->AddComponent(new CubeCollider(rampObstacle2));
 		CreateObject(rampObstacle2);
 
-		HamsterObject* hm = new HamsterObject();
 		CreateObject(new HamsterObject());
 		CreateObject(new BallObject(Vector3(0.0f, 5.0f, 0.0f))); //This must be the last object we create!!!
 

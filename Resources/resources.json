@@ -240,5 +240,23 @@
             "path": "Resources/SergiosMagicDustbin.mp3",
             "resource_type": "AudioClip"
         }
+    ],
+    [
+        {
+            "string": "CerealBoxTexture"
+        },
+        {
+            "path": "Resources/CerealBox.png",
+            "resource_type": "Texture"
+        }
+    ],
+	[
+        {
+            "string": "CerealBoxModel"
+        },
+        {
+            "path": "Resources/CerealBox.fbx",
+            "resource_type": "Mesh"
+        }
     ]
 ]

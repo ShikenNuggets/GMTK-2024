@@ -62,5 +62,6 @@ public:
 		App::GetMaterialCache().AddMaterial(SID("GlassMaterial"), new DiffuseTextureMaterial(SID("GlassTexture"), SID("UnlitShader")));
 		App::GetMaterialCache().AddMaterial(SID("HamsterMaterial"), new DiffuseTextureMaterial(SID("HamsterTexture"), SID("DefaultShader")));
 		App::GetMaterialCache().AddMaterial(SID("SinkMaterial"), new DiffuseTextureMaterial(SID("StainlessSteelTexture"), SID("DefaultShader")));
+		App::GetMaterialCache().AddMaterial(SID("CerealBoxMaterial"), new DiffuseTextureMaterial(SID("CerealBoxTexture"), SID("DefaultShader"))); //TODO - Make default shader the, uh, default
 	}
 };
