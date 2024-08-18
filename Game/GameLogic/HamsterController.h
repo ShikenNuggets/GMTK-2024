@@ -10,7 +10,7 @@ using namespace Gadget;
 //Most child objects should obey the rotation of their parent, but in this case we don't
 class HamsterController : public GameLogicComponent{
 public:
-	HamsterController(GameObject* parent_) : GameLogicComponent(SID("HamsterController"), parent_), initialScale(1.0f), ball(nullptr), currentOffset(defaultOffset), isChangingState(false), stateChangeTimer(0.0f), stateChangeTime(0.0f), targetOffset(){}
+	HamsterController(GameObject* parent_) : GameLogicComponent(SID("HamsterController"), parent_), initialScale(1.0f), ball(nullptr), currentOffset(defaultOffset), isChangingState(false), stateChangeTimer(0.0f), stateChangeTime(0.0f), targetOffset(), isMoving(false), startRotationX(0.0f), startedMovingTime(0.0f){}
 
 	virtual void OnStart(){
 		ball = App::GetSceneManager().CurrentScene()->FindWithTag(SID("Ball"));
@@ -18,6 +18,7 @@ public:
 		GADGET_BASIC_ASSERT(ball != nullptr);
 
 		initialScale = parent->GetScale().x;
+		startRotationX = parent->GetRotation().ToEuler().x;
 
 		GameLogicComponent::OnStart();
 	}
@@ -40,6 +41,27 @@ public:
 
 		parent->SetPosition(ball->GetPosition() + currentOffset);
 		parent->SetScale(ball->GetScale() * initialScale);
+
+		if(App::GetInput().GetAxis(SID("Horizontal")) != 0.0f || App::GetInput().GetAxis(SID("Vertical")) != 0.0f){
+			if(!isMoving){
+				isMoving = true;
+				startedMovingTime = App::GetTime().TimeSinceStartup();
+			}
+		}else{
+			isMoving = false;
+		}
+
+		if(isMoving){
+			float rotAngle = startRotationX + (Math::Sin(500 * App::GetTime().TimeSinceStartup() - startedMovingTime) * 5.0f);
+			GADGET_LOG(SID("HAMSTER"), std::to_string(Math::Sin(500 * App::GetTime().TimeSinceStartup() - startedMovingTime)));
+			Euler rotation = parent->GetRotation().ToEuler();
+			rotation.x = rotAngle;
+			parent->SetRotation(rotation);
+		}else{
+			Euler rotation = parent->GetRotation().ToEuler();
+			rotation.x = Math::Lerp(rotation.x, startRotationX, deltaTime_); //This is not really correct but it gives us a better result than the alternative
+			parent->SetRotation(rotation);
+		}
 
 		GameLogicComponent::OnUpdate(deltaTime_);
 	}
@@ -83,4 +105,8 @@ private:
 	float stateChangeTime;
 	Vector3 oldOffset;
 	Vector3 targetOffset;
+
+	bool isMoving;
+	float startRotationX;
+	float startedMovingTime;
 };
