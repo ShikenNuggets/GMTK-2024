@@ -4,6 +4,8 @@
 #include <Graphics/GUI/FpsDisplayElement.h>
 #include <Graphics/GUI/TimerDisplayElement.h>
 
+#include "GameHandler.h"
+
 using namespace Gadget;
 
 class GameplayCanvasSceneComponent : public CanvasSceneComponent{
@@ -34,10 +36,14 @@ public:
 			timer->SetColor(Color::Red());
 		}
 
+		if(timer->GetTimer() <= 1.0f){
+			parent->GetSceneComponent<GameHandler>()->TriggerGameOver();
+		}
+
 		if(gameOverTimerStarted){
 			gameOverTimer += deltaTime_;
 
-			if(gameOverTimer > 2.5f){
+			if(gameOverTimer > 5.0f){
 				App::GetSceneManager().RequestReloadCurrentScene();
 				gameOverTimerStarted = false;
 			}

@@ -142,6 +142,10 @@ public:
 
 	GrowState GetGrowState() const{ return currentState; }
 
+	void OnGameOver(){
+		gameOver = true;
+	}
+
 private:
 	static constexpr float moveSpeed = 15.0f;
 	static constexpr float jumpForce = 18.0f;

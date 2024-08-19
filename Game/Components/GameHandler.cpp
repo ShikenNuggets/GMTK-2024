@@ -4,6 +4,7 @@
 #include "Objects/CameraObject.h"
 
 void GameHandler::TriggerGameOver(){
+	GADGET_BASIC_ASSERT(parent != nullptr);
 	auto gameplayCanvas = parent->GetSceneComponent<GameplayCanvasSceneComponent>();
 	if(gameplayCanvas != nullptr){
 		gameplayCanvas->OnGameOver();
@@ -13,5 +14,11 @@ void GameHandler::TriggerGameOver(){
 	CameraObject* cam = dynamic_cast<CameraObject*>(go);
 	if(cam != nullptr){
 		cam->OnGameOver();
+	}
+
+	GameObject* ballGo = parent->FindWithTag(SID("Ball"));
+	BallController* ballControl = ballGo->GetComponent<BallController>();
+	if(ballControl != nullptr){
+		ballControl->OnGameOver();
 	}
 }

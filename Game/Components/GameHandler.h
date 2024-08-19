@@ -2,8 +2,6 @@
 
 #include <Gadget.h>
 
-#include "GameplayCanvasSceneComponent.h"
-
 using namespace Gadget;
 
 class GameHandler : public SceneComponent{
