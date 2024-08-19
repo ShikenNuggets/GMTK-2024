@@ -48,12 +48,31 @@ public:
 				gameOverTimerStarted = false;
 			}
 		}
+
+		if(winTimerStarted){
+			gameOverTimer += deltaTime_;
+			if(gameOverTimer > 5.0f){
+				App::GetSceneManager().RequestSceneLoad(SID("MainMenu"));
+				winTimerStarted = false;
+			}
+		}
 	}
 
 	void StartJumpBar(float jumpBarTime_){
 		GADGET_BASIC_ASSERT(Math::IsValidNumber(jumpBarTime_));
 		jumpBarTime = jumpBarTime_;
 		jumpBarTimer = jumpBarTime_;
+	}
+
+	void OnWinState(){
+		std::vector<GuiElement*> elements;
+		GetCanvas().GetElements(elements);
+		for(auto* e : elements){
+			e->SetIsActive(false);
+		}
+
+		GetCanvas().AddElement(new GuiTextElement(SID("WinText"), "You Win!", SID("ArialFont"), Vector2(0.0f, 0.8f), Gadget::Vector2(1.0f, 0.5f), GuiAnchor::Center));
+		winTimerStarted = true;
 	}
 
 	void OnGameOver(){
@@ -79,5 +98,6 @@ private:
 	float jumpBarTime;
 
 	bool gameOverTimerStarted = false;
+	bool winTimerStarted = false;
 	float gameOverTimer = 0.0f;
 };

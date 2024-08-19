@@ -50,6 +50,10 @@ public:
 			}
 			App::GetConfig().SetOption(EngineVars::Audio::sectionName, EngineVars::Audio::musicVolumeKey, curVolume);
 		}
+
+		if(App::GetInput().GetButtonDown(ButtonID::Keyboard_P)){
+			GADGET_LOG(SID("HAMSTER"), std::to_string(parent->GetPosition().z));
+		}
 		#endif // GADGET_DEBUG
 
 		if(gameOver || rb == nullptr || cameraObj == nullptr){
@@ -137,6 +141,14 @@ public:
 			}
 
 			gameOver = true;
+		}
+
+		if(parent->GetPosition().z < -4650.0f){
+			GameHandler* handler = App::GetSceneManager().CurrentScene()->GetSceneComponent<GameHandler>();
+			GADGET_BASIC_ASSERT(handler != nullptr);
+			if(handler != nullptr){
+				handler->TriggerWinState();
+			}
 		}
 	}
 
