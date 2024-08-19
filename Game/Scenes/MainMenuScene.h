@@ -21,7 +21,7 @@ protected:
 		GuiButton* creditsButton = new GuiButton(SID("CreditsButton"), "Credits", SID("ArialFont"), SID("ButtonTexture"), Vector2(0.0f, 0.0f), Vector2(0.2f, 0.1f), GuiAnchor::Center);
 		GuiButton* quitButton = new GuiButton(SID("QuitButton"), "Quit", SID("ArialFont"), SID("ButtonTexture"), Vector2(0.0f, -0.25f), Vector2(0.2f, 0.1f), GuiAnchor::Center);
 
-		startButton->SetOnClickCallback([](ButtonID id_, const Vector2& v){ App::GetSceneManager().RequestSceneLoad(SID("TestScene")); });
+		startButton->SetOnClickCallback([](ButtonID id_, const Vector2& v){ App::GetSceneManager().RequestSceneLoad(SID("KitchenScene")); });
 		creditsButton->SetOnClickCallback([](ButtonID id_, const Vector2& v_){});
 		quitButton->SetOnClickCallback([](ButtonID id_, const Vector2& v){ App::CloseGame(); });
 
@@ -32,7 +32,24 @@ protected:
 		canvas->AddElement(quitButton);
 
 		AddSceneComponent(new CanvasSceneComponent(this, canvas));
+		AddSceneComponent(new SkyboxComponent(this, SID("KitchenSky")));
 
-		CreateObject(new CameraObject(Vector3::Zero(), false));
+		CameraObject* cameraObj = new CameraObject(Vector3::Zero(), false, SID("MenuMusic"));
+		cameraObj->Rotate(0.0f, 30.0f, 0.0f);
+		CreateObject(cameraObj);
+
+		GameObject* dirLight = new GameObject(SID("DirLight"));
+		dirLight->AddComponent(new DirectionalLightComponent(dirLight, Vector3(0.8f, -1.0f, -0.5f).Normalized()));
+		CreateObject(dirLight);
+
+		HamsterObject* hamster = new HamsterObject(Vector3(-2.5f, -1.0f, -2.5f));
+		hamster->Rotate(0.0f, 0.0f, -120.0f);
+		CreateObject(hamster);
+
+		CreateObject(new FloorObject(
+			hamster->GetPosition() + Vector3(0.0f, -0.5f, 0.0f),
+			Quaternion::Identity(),
+			Vector3(2.5f, 1.0f, 2.5f)
+		));
 	}
 };

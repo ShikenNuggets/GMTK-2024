@@ -15,7 +15,6 @@ public:
 	virtual void OnStart(){
 		ball = App::GetSceneManager().CurrentScene()->FindWithTag(SID("Ball"));
 		GADGET_BASIC_ASSERT(parent != nullptr);
-		GADGET_BASIC_ASSERT(ball != nullptr);
 
 		initialScale = parent->GetScale().x;
 		startRotationX = parent->GetRotation().ToEuler().x;
