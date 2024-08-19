@@ -82,11 +82,17 @@ protected:
 			if(i % 2 == 0 || i == numPlatforms - 1){
 				CreateObject(new RampObject(0.0f, platformPos));
 			}else{
-				CreateObject(new CerealBoxObject(17.5f, platformPos)); //After stove gap 1
-				CreateObject(new CerealBoxObject(8.5f, platformPos)); //After stove gap 2
-				CreateObject(new CerealBoxObject(0.0f, platformPos)); //After stove gap 3
-				CreateObject(new CerealBoxObject(-8.5f, platformPos)); //After stove gap 4
-				CreateObject(new CerealBoxObject(-17.5f, platformPos)); //After stove gap 5
+				const float rand1 = Random::Range(-0.5f, 0.5f);
+				const float rand2 = Random::Range(-0.5f, 0.5f);
+				const float rand3 = Random::Range(-0.5f, 0.5f);
+				const float rand4 = Random::Range(-0.5f, 0.5f);
+				const float rand5 = Random::Range(-0.5f, 0.5f);
+
+				CreateObject(new CerealBoxObject(17.5f + rand1, platformPos)); //After stove gap 1
+				CreateObject(new CerealBoxObject(8.5f + rand2, platformPos)); //After stove gap 2
+				CreateObject(new CerealBoxObject(0.0f + rand3, platformPos)); //After stove gap 3
+				CreateObject(new CerealBoxObject(-8.5f + rand4, platformPos)); //After stove gap 4
+				CreateObject(new CerealBoxObject(-17.5f + rand5, platformPos)); //After stove gap 5
 			}
 		}
 
