@@ -21,6 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameLogic\BallController.h" />
+    <ClInclude Include="Misc\MenuGuiCanvas.h" />
     <ClInclude Include="Objects\BallObject.h" />
     <ClInclude Include="GameLogic\CameraController.h" />
     <ClInclude Include="Objects\CameraObject.h" />

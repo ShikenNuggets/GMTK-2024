@@ -141,7 +141,8 @@ protected:
 		CreateObject(new CerealBoxObject(-17.5f, 55.0f * -5.0f)); //After stove gap 5
 
 		GameObject* dirLight = new GameObject(SID("DirLight"));
-		dirLight->AddComponent(new DirectionalLightComponent(dirLight, Vector3(0.8f, -1.0f, -0.5f).Normalized()));
+		dirLight->Rotate(-75.0f, 15.0f, 0.0f);
+		dirLight->AddComponent(new DirectionalLightComponent(dirLight));
 		CreateObject(dirLight);
 
 		CreateObject(new RampObject(0.0f, -125.0f));
