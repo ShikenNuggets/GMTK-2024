@@ -10,14 +10,14 @@ using namespace Gadget;
 
 class BallController : public GameLogicComponent{
 public:
-	BallController(GameObject* parent_) : GameLogicComponent(SID("BallController"), parent_), cameraObj(nullptr), rb(nullptr), gameplayCanvas(nullptr), jumpCooldownTimer(0.0f), currentState(GrowState::Normal), canChangeState(true), gameOver(false), oldScale(sizes[GrowState::Normal]), targetScale(sizes[GrowState::Normal]), scaleTimer(0.0f){}
+	BallController(GameObject* parent_) : GameLogicComponent(SID("BallController"), parent_), cameraObj(nullptr), rb(nullptr), gameplayCanvas(nullptr), jumpCooldownTimer(0.0f), currentState(GrowState::Normal), canChangeState(true), gameOver(false), oldScale(sizes[GrowState::Normal]), targetScale(sizes[GrowState::Normal]), scaleTimer(0.0f), curMaxVelocity(minMaxVelocity){}
 
 	virtual void OnStart(){
 		GADGET_BASIC_ASSERT(parent != nullptr);
 
 		rb = parent->GetComponent<Rigidbody>();
 		GADGET_BASIC_ASSERT(rb != nullptr);
-		rb->SetMaxVelocity(Vector3(20.0f, Math::Infinity, 20.0f));
+		rb->SetMaxVelocity(Vector3(minMaxVelocity, Math::Infinity, minMaxVelocity));
 		rb->SetBrakingSpeed(7.5f);
 
 		cameraObj = App::GetSceneManager().CurrentScene()->FindWithTag(SID("Camera"));
@@ -67,9 +67,17 @@ public:
 		}else{
 			magnitude = direction.Magnitude();
 			direction.Normalize();
+			
 		}
 
 		rb->AddVelocity(direction * magnitude * moveSpeed * deltaTime_);
+
+		if(rb->GetVelocity().z >= 0.0f){
+			curMaxVelocity = Math::Clamp(minMaxVelocity, maxMaxVelocity, curMaxVelocity - (deltaTime_ * 10.0f));
+		}else{
+			curMaxVelocity = Math::Clamp(minMaxVelocity, maxMaxVelocity, curMaxVelocity + (deltaTime_));
+		}
+		rb->SetMaxVelocity(Vector3(curMaxVelocity, Math::Infinity, curMaxVelocity));
 
 		//Jumping
 		jumpCooldownTimer -= deltaTime_;
@@ -133,6 +141,9 @@ private:
 	static constexpr float jumpCooldownTime = 1.5f;
 	static constexpr float scaleTime = 1.0f;
 
+	static constexpr float minMaxVelocity = 20.0f;
+	static constexpr float maxMaxVelocity = 50.0f;
+
 	//TODO - constexpr Gadget::StaticArray
 	//TODO - Brace initializer for Gadget::StaticArray
 	static constexpr std::array<float, 3> sizes{
@@ -158,6 +169,7 @@ private:
 	float oldScale;
 	float targetScale;
 	float scaleTimer;
+	float curMaxVelocity;
 
 	void OnGrowStateChangeBegins(GrowState state) const;
 };
