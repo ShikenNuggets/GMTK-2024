@@ -105,6 +105,7 @@ public:
 			currentState = (GrowState)((int)currentState + 1);
 			targetScale = sizes[currentState];
 			scaleTimer = 0.0f;
+			rb->SetMass(scales[currentState]);
 			OnGrowStateChangeBegins(currentState);
 		}else if(App::GetInput().GetButtonDown(SID("Shrink")) && currentState > GrowState::Small && canChangeState){
 			canChangeState = false;
@@ -112,6 +113,7 @@ public:
 			currentState = (GrowState)((int)currentState - 1);
 			targetScale = sizes[currentState];
 			scaleTimer = 0.0f;
+			rb->SetMass(scales[currentState]);
 			OnGrowStateChangeBegins(currentState);
 		}
 
@@ -120,7 +122,6 @@ public:
 			if(scaleTimer >= scaleTime){
 				GADGET_BASIC_ASSERT(currentState <= GrowState::Big);
 				parent->SetScale(targetScale);
-				rb->SetMass(scales[currentState]);
 				canChangeState = true;
 			}else{
 				parent->SetScale(Math::Lerp(oldScale, targetScale, scaleTimer / scaleTime));
