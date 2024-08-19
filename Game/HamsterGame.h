@@ -51,6 +51,14 @@ public:
 		shrink.AddButtonID(ButtonID::Keyboard_Q);
 		shrink.AddButtonID(ButtonID::Gamepad_Shoulder_Left1);
 		App::GetInput().DefineButton(shrink);
+
+		Button pause = Button(SID("Pause"));
+		pause.AddButtonID(ButtonID::Keyboard_Escape);
+		pause.AddButtonID(ButtonID::Keyboard_Tab);
+		pause.AddButtonID(ButtonID::Keyboard_Keypad_Tab);
+		pause.AddButtonID(ButtonID::Gamepad_Start);
+		pause.AddButtonID(ButtonID::Gamepad_Select);
+		App::GetInput().DefineButton(pause);
 	}
 
 	void DefineMaterials(){

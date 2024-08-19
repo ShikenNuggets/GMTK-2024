@@ -6,8 +6,14 @@ using namespace Gadget;
 
 class GameHandler : public SceneComponent{
 public:
-	GameHandler(Scene* parent_) : SceneComponent(parent_), isGameOver(false){};
+	GameHandler(Scene* parent_) : SceneComponent(parent_){};
 
+	virtual void OnUpdate(float deltaTime_) override;
+
+	void Pause();
+	void Unpause();
+
+	void TriggerEndTutorial();
 	void TriggerWinState();
 	void TriggerGameOver();
 
@@ -15,6 +21,7 @@ public:
 	bool IsWinState() const{ return isWinState; }
 
 private:
-	bool isGameOver;
-	bool isWinState;
+	bool isGameOver = false;
+	bool isWinState = false;
+	bool isPaused = false;
 };

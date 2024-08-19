@@ -132,6 +132,15 @@ public:
 			}
 		}
 
+		//Leave Tutorial Area
+		if(parent->GetPosition().z < -200.0f){
+			GameHandler* handler = App::GetSceneManager().CurrentScene()->GetSceneComponent<GameHandler>();
+			GADGET_BASIC_ASSERT(handler != nullptr);
+			if(handler != nullptr){
+				handler->TriggerEndTutorial();
+			}
+		}
+
 		//Game Over
 		if(parent->GetPosition().y < gameOverHeight){
 			GameHandler* handler = App::GetSceneManager().CurrentScene()->GetSceneComponent<GameHandler>();
@@ -143,6 +152,7 @@ public:
 			gameOver = true;
 		}
 
+		//Win
 		if(parent->GetPosition().z < -4650.0f){
 			GameHandler* handler = App::GetSceneManager().CurrentScene()->GetSceneComponent<GameHandler>();
 			GADGET_BASIC_ASSERT(handler != nullptr);
