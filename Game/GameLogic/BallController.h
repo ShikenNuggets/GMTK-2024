@@ -129,7 +129,7 @@ public:
 		}
 
 		//Game Over
-		if(parent->GetPosition().y < -2.0f){
+		if(parent->GetPosition().y < gameOverHeight){
 			GameHandler* handler = App::GetSceneManager().CurrentScene()->GetSceneComponent<GameHandler>();
 			GADGET_BASIC_ASSERT(handler != nullptr);
 			if(handler != nullptr){
@@ -150,6 +150,8 @@ private:
 
 	static constexpr float minMaxVelocity = 20.0f;
 	static constexpr float maxMaxVelocity = 50.0f;
+
+	static constexpr float gameOverHeight = -5.0f;
 
 	//TODO - constexpr Gadget::StaticArray
 	//TODO - Brace initializer for Gadget::StaticArray
