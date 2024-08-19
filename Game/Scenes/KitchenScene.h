@@ -64,12 +64,12 @@ protected:
 		));
 
 		//12 blocks afterwards
-		static constexpr size_t numPlatforms = 20;
+		static constexpr size_t numPlatforms = 22;
 		int extraOffset = 0;
 		for(size_t i = 0; i < numPlatforms; i++){
 			const float platformDistance = 200.0f * i;
 			const float platformPos = -400.0f - platformDistance - extraOffset;
-			extraOffset += 25;
+			extraOffset += 20;
 
 			
 			CreateObject(new FloorObject(

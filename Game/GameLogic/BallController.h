@@ -72,9 +72,9 @@ public:
 
 		rb->AddVelocity(direction * magnitude * moveSpeed * deltaTime_);
 
-		if(rb->GetVelocity().z >= 0.0f){
+		if(currentState == GrowState::Big || rb->GetVelocity().z >= 0.0f){
 			curMaxVelocity = Math::Clamp(minMaxVelocity, maxMaxVelocity, curMaxVelocity - (deltaTime_ * 10.0f));
-		}else{
+		}else if(currentState == GrowState::Small || rb->GetVelocity().z < 0.0f){
 			curMaxVelocity = Math::Clamp(minMaxVelocity, maxMaxVelocity, curMaxVelocity + (deltaTime_));
 		}
 		rb->SetMaxVelocity(Vector3(curMaxVelocity, Math::Infinity, curMaxVelocity));
@@ -85,7 +85,12 @@ public:
 			Vector3 oldVelocity = rb->GetVelocity();
 			rb->SetVelocity(oldVelocity.x, 0.0f, oldVelocity.z);
 
-			rb->AddVelocity(Vector3::Up() * jumpForce); //TODO - Add Force appears to be framerate dependent
+			float jumpForceToUse = jumpForce;
+			if(currentState == GrowState::Big){
+				jumpForceToUse /= 1.25f;
+			}
+
+			rb->AddVelocity(Vector3::Up() * jumpForceToUse); //TODO - Add Force appears to be framerate dependent
 			jumpCooldownTimer = jumpCooldownTime;
 
 			if(gameplayCanvas != nullptr){
@@ -113,6 +118,7 @@ public:
 		if(!canChangeState){
 			scaleTimer += deltaTime_;
 			if(scaleTimer >= scaleTime){
+				GADGET_BASIC_ASSERT(currentState <= GrowState::Big);
 				parent->SetScale(targetScale);
 				rb->SetMass(scales[currentState]);
 				canChangeState = true;
@@ -139,7 +145,7 @@ private:
 	static constexpr float moveSpeed = 15.0f;
 	static constexpr float jumpForce = 18.0f;
 	static constexpr float jumpCooldownTime = 1.5f;
-	static constexpr float scaleTime = 1.0f;
+	static constexpr float scaleTime = 0.25f;
 
 	static constexpr float minMaxVelocity = 20.0f;
 	static constexpr float maxMaxVelocity = 50.0f;
