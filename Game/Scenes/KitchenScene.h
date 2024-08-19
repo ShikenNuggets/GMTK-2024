@@ -64,13 +64,30 @@ protected:
 		));
 
 		//12 blocks afterwards
-		for(size_t i = 0; i < 12; i++){
+		static constexpr size_t numPlatforms = 20;
+		int extraOffset = 0;
+		for(size_t i = 0; i < numPlatforms; i++){
+			const float platformDistance = 200.0f * i;
+			const float platformPos = -400.0f - platformDistance - extraOffset;
+			extraOffset += 25;
+
+			
 			CreateObject(new FloorObject(
-				Vector3(0.0f, 0.0f, -400 + (-200.0f * i)),
+				Vector3(0.0f, 0.0f, platformPos + 15.0f),
 				Quaternion::Identity(),
 				Vector3(levelWidth, 1.0f, 100.0f),
 				SID("Invalid")
 			));
+
+			if(i % 2 == 0 || i == numPlatforms - 1){
+				CreateObject(new RampObject(0.0f, platformPos));
+			}else{
+				CreateObject(new CerealBoxObject(17.5f, platformPos)); //After stove gap 1
+				CreateObject(new CerealBoxObject(8.5f, platformPos)); //After stove gap 2
+				CreateObject(new CerealBoxObject(0.0f, platformPos)); //After stove gap 3
+				CreateObject(new CerealBoxObject(-8.5f, platformPos)); //After stove gap 4
+				CreateObject(new CerealBoxObject(-17.5f, platformPos)); //After stove gap 5
+			}
 		}
 
 		GameObject* faucet = new GameObject(SID("Faucet"));
@@ -87,11 +104,16 @@ protected:
 		sink->AddComponent(new RenderComponent(sink->GetGUID(), SID("SinkModel"), SID("SinkMaterial")));
 		CreateObject(sink);
 
-		CreateObject(new CerealBoxObject(17.5f, -37.5f));
+		CreateObject(new CerealBoxObject(17.5f, -37.5f)); //Right of sink
+		CreateObject(new CerealBoxObject(17.5f, 55.0f * -5.0f)); //After stove gap 1
+		CreateObject(new CerealBoxObject(8.5f, 55.0f * -5.0f)); //After stove gap 2
+		CreateObject(new CerealBoxObject(0.0f, 55.0f * -5.0f)); //After stove gap 3
+		CreateObject(new CerealBoxObject(-8.5f, 55.0f * -5.0f)); //After stove gap 4
+		CreateObject(new CerealBoxObject(-17.5f, 55.0f * -5.0f)); //After stove gap 5
 
 		GameObject* dirLight = new GameObject(SID("DirLight"));
 		dirLight->AddComponent(new DirectionalLightComponent(dirLight, Vector3(0.8f, -1.0f, -0.5f).Normalized()));
-		CreateObject(dirLight); //TODO - Forgot to add this earlier and nothing complained, check for undeleted objects on shutdown
+		CreateObject(dirLight);
 
 		CreateObject(new RampObject(0.0f, -125.0f));
 		CreateObject(new FloorObject(
