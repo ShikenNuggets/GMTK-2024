@@ -33,6 +33,15 @@ public:
 		if(timer->GetTimer() <= musicDuration - finalWarningTime){
 			timer->SetColor(Color::Red());
 		}
+
+		if(gameOverTimerStarted){
+			gameOverTimer += deltaTime_;
+
+			if(gameOverTimer > 2.5f){
+				App::GetSceneManager().RequestReloadCurrentScene();
+				gameOverTimerStarted = false;
+			}
+		}
 	}
 
 	void StartJumpBar(float jumpBarTime_){
@@ -47,6 +56,8 @@ public:
 		for(auto* e : elements){
 			e->SetIsActive(false);
 		}
+
+		gameOverTimerStarted = true;
 	}
 
 private:
@@ -60,4 +71,7 @@ private:
 	TimerDisplayElement* timer;
 	float jumpBarTimer;
 	float jumpBarTime;
+
+	bool gameOverTimerStarted = false;
+	float gameOverTimer = 0.0f;
 };
